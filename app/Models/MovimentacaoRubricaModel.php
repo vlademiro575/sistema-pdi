@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class MovimentacaoRubricaModel extends Model
+{
+    protected $table            = 'movimentacoes_rubricas';
+    protected $primaryKey       = 'id_movimentacao_rubrica';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+
+    protected $allowedFields    = [
+        'id_rubrica',
+        'id_despesa',
+        'tipo',
+        'valor',
+        'saldo_anterior',
+        'saldo_posterior',
+        'descricao'
+    ];
+
+    protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+
+    protected $beforeInsert = ['setAuditoriaCriacao'];
+    protected $beforeUpdate = ['setAuditoriaAtualizacao'];
+    protected $beforeDelete = ['setAuditoriaExclusao'];
+
+    protected function setAuditoriaCriacao(array $data)
+    {
+        if (isset($data['data'])) {
+            $data['data']['_criado_por'] = session()->get('login') ?? 'sistema';
+            $data['data']['_criado_em']  = date('Y-m-d H:i:s');
+            $data['data']['_operacao']   = 'INSERT';
+        }
+        return $data;
+    }
+
+    protected function setAuditoriaAtualizacao(array $data)
+    {
+        if (isset($data['data'])) {
+            $data['data']['_atualizado_por'] = session()->get('login') ?? 'sistema';
+            $data['data']['_atualizado_em']  = date('Y-m-d H:i:s');
+            $data['data']['_operacao']       = 'UPDATE';
+        }
+        return $data;
+    }
+
+    protected function setAuditoriaExclusao(array $data)
+    {
+        if (!empty($data['id'])) {
+            $this->builder()
+                 ->whereIn($this->primaryKey, (array) $data['id'])
+                 ->update([
+                     '_atualizado_por' => session()->get('login') ?? 'sistema',
+                     '_deletado_por'   => session()->get('login') ?? 'sistema',
+                     '_deletado_em'    => date('Y-m-d H:i:s'),
+                     '_operacao'       => 'DELETE'
+                 ]);
+        }
+        return $data;
+    }
+}
