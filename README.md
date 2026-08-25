@@ -37,7 +37,7 @@ sudo apt install -y php php-cli php-mbstring php-intl php-sqlite3 php-curl php-z
 Abra o terminal, escolha o diretório web e baixe o repositório oficial:
 
 ```bash
-git clone [https://github.com/vlademiro575/pdi.git](https://github.com/vlademiro575/pdi.git) sistema-pdi
+git clone https://github.com/vlademiro575/sistema-pdi.git
 cd sistema-pdi
 ```
 
