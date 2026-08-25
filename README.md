@@ -2,7 +2,7 @@
 
 **A plataforma segura e auditável para a gestão administrativa e financeira de projetos de pesquisa acadêmica.**
 
-## 📖 O que é o Sistema PDI? (Para Leigos)
+## 📖 O que é o Sistema PDI? 
 O **Sistema PDI** é uma ferramenta criada para facilitar a vida de professores, pesquisadores, universidades e fundações de apoio (como FCPC, FASTEF, etc.). Ele acaba com a confusão das planilhas manuais e da papelada física, centralizando tudo em um só lugar. 
 Com ele, você pode controlar o orçamento da pesquisa, o pagamento de bolsistas e as despesas diárias de forma automática, garantindo total transparência para órgãos de controle (como TCU e CGU). 
 
@@ -32,3 +32,62 @@ No servidor ou máquina local, certifique-se de ter instalado o PHP 8.x e as ext
 sudo apt update
 sudo apt install -y php php-cli php-mbstring php-intl php-sqlite3 php-curl php-zip php-xml unzip git composer
 ```
+
+### 2. Clonando o Projeto
+Abra o terminal, escolha o diretório web e baixe o repositório oficial:
+
+```bash
+git clone [https://github.com/vlademiro575/pdi.git](https://github.com/vlademiro575/pdi.git) sistema-pdi
+cd sistema-pdi
+```
+
+### 3. Instalando as Dependências
+
+Execute o Composer para baixar todas as bibliotecas e pacotes necessários para o CodeIgniter 4 funcionar:
+
+```bash
+composer install
+```
+
+### 4. Configurando o ambiente
+
+Crie o arquivo de configuração de ambiente copiando o arquivo de exemplo:
+
+Bash
+```bash
+cp env .env
+```
+Abra o arquivo `.env` no seu editor e configure o sistema para desenvolvimento, garantindo o apontamento correto para o banco de dados.
+
+```bash
+CI_ENVIRONMENT = development
+
+database.default.DBDriver = SQLite3
+# O WRITEPATH aponta nativamente para a pasta writable/ do projeto
+database.default.database = WRITEPATH . 'database/pdi.db'
+database.default.DBPrefix = ""
+```
+
+### 5. Configurando o Banco de Dados (SQLite)
+
+O banco de dados SQLite é essencialmente um arquivo, mas a pasta física onde ele reside precisa existir e ter permissões adequadas de leitura/escrita para o servidor web e para o PHP:
+```bash
+mkdir -p writable/database
+chmod -R 775 writable
+```
+
+### 6. Rodando o Servidor Localmente
+
+Para levantar a aplicação utilizando o servidor embutido (Spark) do CodeIgniter:  
+
+```bash
+php spark serve --host 0.0.0.0 --port 8080
+```
+
+Pronto! Basta acessar http://localhost:8080 no seu navegador e você terá acesso total ao Sistema PDI.  
+
+### 7. Primeiro login
+
+Usuário: admin
+Senha: 123456
+
