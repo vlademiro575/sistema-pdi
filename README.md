@@ -49,34 +49,15 @@ Execute o Composer para baixar todas as bibliotecas e pacotes necessários para 
 composer install
 ```
 
-### 4. Configurando o ambiente
+### 4. Atribuindo permissões de escrita na pasta `writable`
 
-Crie o arquivo de configuração de ambiente copiando o arquivo de exemplo:
-
-Bash
-```bash
-cp env .env
-```
-Abra o arquivo `.env` no seu editor e configure o sistema para desenvolvimento, garantindo o apontamento correto para o banco de dados.
+Atribua permissões de escrita na pasta `writable`. Essa pasta contém várias subpastas, onde ficam o banco de dados, sessões, logs, etc.
 
 ```bash
-CI_ENVIRONMENT = development
-
-database.default.DBDriver = SQLite3
-# O WRITEPATH aponta nativamente para a pasta writable/ do projeto
-database.default.database = WRITEPATH . 'database/pdi.db'
-database.default.DBPrefix = ""
-```
-
-### 5. Configurando o Banco de Dados (SQLite)
-
-O banco de dados SQLite é essencialmente um arquivo, mas a pasta física onde ele reside precisa existir e ter permissões adequadas de leitura/escrita para o servidor web e para o PHP:
-```bash
-mkdir -p writable/database
 chmod -R 775 writable
 ```
 
-### 6. Rodando o Servidor Localmente
+### 5. Rodando o Servidor Localmente
 
 Para levantar a aplicação utilizando o servidor embutido (Spark) do CodeIgniter:  
 
@@ -88,6 +69,7 @@ Pronto! Basta acessar http://localhost:8080 no seu navegador e você terá acess
 
 ### 7. Primeiro login
 
-Usuário: admin
-Senha: 123456
+* Usuário: admin
+* Senha: 123456
+
 
