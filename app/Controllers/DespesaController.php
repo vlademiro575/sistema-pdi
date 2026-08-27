@@ -7,6 +7,7 @@ use App\Models\DespesaModel;
 use App\Models\ProjetoModel;
 use App\Models\RubricaModel;
 use App\Models\AnexoModel;
+use App\Libraries\SefazXmlParser;
 
 class DespesaController extends BaseController
 {
@@ -66,6 +67,58 @@ class DespesaController extends BaseController
     }
 
     /**
+     * Formulário de Upload de XML SEFAZ (NF-e / NFC-e)
+     */
+    public function importarXml()
+    {
+        $data = [
+            'titulo' => 'Importar Nota Fiscal via XML SEFAZ'
+        ];
+
+        return view('despesas/upload_xml', $data);
+    }
+
+    /**
+     * Processa o arquivo XML e pré-preenche o formulário de despesa
+     */
+    public function processarXml()
+    {
+        $rules = [
+            'xml_file' => 'uploaded[xml_file]|max_size[xml_file,5120]|ext_in[xml_file,xml]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $file = $this->request->getFile('xml_file');
+
+        if (!$file->isValid()) {
+            return redirect()->back()->with('erro', 'Arquivo XML inválido ou com falha no envio.');
+        }
+
+        try {
+            $xmlContent = file_get_contents($file->getTempName());
+            $parser = new SefazXmlParser();
+            $dadosExtraidos = $parser->parse($xmlContent);
+
+            $data = [
+                'titulo'        => 'Lançamento de Nova Despesa (via XML SEFAZ)',
+                'despesa'       => $dadosExtraidos,
+                'projetos'      => $this->projetoModel->findAll(),
+                'rubricas'      => [],
+                'importado_xml' => true
+            ];
+
+            session()->setFlashdata('sucesso', 'Dados da Nota Fiscal extraídos com sucesso! Selecione o Projeto e a Rubrica correspondentes antes de salvar.');
+
+            return view('despesas/form', $data);
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('erro', 'Falha ao processar XML da NF-e: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Salva uma nova despesa
      * (O SQLite Trigger criará o extrato e debitará o saldo da rubrica automaticamente)
      */
@@ -79,7 +132,7 @@ class DespesaController extends BaseController
             'numero_nota'      => 'permit_empty|max_length[100]',
             'nome_fornecedor'  => 'permit_empty|max_length[255]',
             'cnpj_fornecedor'  => 'permit_empty|max_length[20]',
-            'comprovante'      => 'permit_empty|uploaded[comprovante]|max_size[comprovante,10240]|ext_in[comprovante,pdf,png,jpg,jpeg]'
+            'comprovante'      => 'permit_empty|uploaded[comprovante]|max_size[comprovante,10240]|ext_in[comprovante,pdf,png,jpg,jpeg,xml]'
         ];
 
         if (!$this->validate($rules)) {
@@ -184,7 +237,7 @@ class DespesaController extends BaseController
             'numero_nota'      => 'permit_empty|max_length[100]',
             'nome_fornecedor'  => 'permit_empty|max_length[255]',
             'cnpj_fornecedor'  => 'permit_empty|max_length[20]',
-            'comprovante'      => 'permit_empty|uploaded[comprovante]|max_size[comprovante,10240]|ext_in[comprovante,pdf,png,jpg,jpeg]'
+            'comprovante'      => 'permit_empty|uploaded[comprovante]|max_size[comprovante,10240]|ext_in[comprovante,pdf,png,jpg,jpeg,xml]'
         ];
 
         if (!$this->validate($rules)) {

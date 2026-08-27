@@ -84,6 +84,8 @@ $routes->group('movimentacoes', ['filter' => 'auth'], function($routes) {
 $routes->group('despesas', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'DespesaController::index');
     $routes->get('novo', 'DespesaController::new');
+    $routes->get('importar-xml', 'DespesaController::importarXml');
+    $routes->post('processar-xml', 'DespesaController::processarXml');
     $routes->post('create', 'DespesaController::create');
     $routes->get('editar/(:num)', 'DespesaController::edit/$1');
     $routes->post('update/(:num)', 'DespesaController::update/$1');

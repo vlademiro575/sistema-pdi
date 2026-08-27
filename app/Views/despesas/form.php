@@ -45,12 +45,23 @@ $(document).ready(function() {
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
-            <?= isset($despesa['id_despesa']) ? 'Editar Despesa #' . $despesa['id_despesa'] : 'Nova Despesa' ?>
+            <?= isset($despesa['id_despesa']) ? 'Editar Despesa #' . $despesa['id_despesa'] : ($titulo ?? 'Nova Despesa') ?>
         </h1>
         <a href="<?= base_url('despesas') ?>" class="btn btn-secondary btn-sm shadow-sm">
             <i class="fas fa-arrow-left fa-sm mr-1"></i> Voltar para a Lista
         </a>
     </div>
+
+    <?php if (!empty($importado_xml)): ?>
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <h6 class="font-weight-bold mb-1">
+                <i class="fas fa-file-invoice mr-1"></i> Dados importados do XML SEFAZ com sucesso!
+            </h6>
+            <span class="small">Os campos da nota fiscal foram pré-preenchidos abaixo. Selecione o <strong>Projeto de PDI</strong> e a <strong>Rubrica Orçamentária</strong> para vincular a despesa e clique em <strong>Salvar Despesa</strong> para concluir.</span>
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+    <?php endif; ?>
+
     <div class="card shadow mb-4 border-left-primary">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Dados da Compra e Prestação de Contas</h6>
@@ -64,7 +75,7 @@ $(document).ready(function() {
                     <div class="form-group col-md-6">
                         <label for="id_projeto" class="font-weight-bold">Projeto de PDI <span class="text-danger">*</span></label>
                         <select name="id_projeto" id="id_projeto" class="form-control" required>
-                            <option value="" disabled <?= !isset($despesa) ? 'selected' : '' ?>>Selecione o Projeto...</option>
+                            <option value="" disabled <?= empty($despesa['id_projeto']) ? 'selected' : '' ?>>Selecione o Projeto...</option>
                             <?php foreach ($projetos as $proj): ?>
                                 <option value="<?= $proj['id_projeto'] ?>" 
                                     <?= set_select('id_projeto', $proj['id_projeto'], (isset($despesa['id_projeto']) && $despesa['id_projeto'] == $proj['id_projeto'])) ?>>
@@ -150,9 +161,9 @@ $(document).ready(function() {
                 </div>
       
                     <div class="form-group col-md-6">
-                        <label for="comprovante" class="font-weight-bold">Anexar Comprovante / PDF da Nota</label>
+                        <label for="comprovante" class="font-weight-bold">Anexar Comprovante / PDF ou XML da Nota</label>
                         <input type="file" name="comprovante" id="comprovante" class="form-control-file">
-                        <small class="form-text text-muted">Formatos permitidos: PDF, JPG, PNG (Máx: 10MB)</small>
+                        <small class="form-text text-muted">Formatos permitidos: PDF, JPG, PNG, XML (Máx: 10MB)</small>
                     </div>
                 </div>
 

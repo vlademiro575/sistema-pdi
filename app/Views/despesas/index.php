@@ -11,9 +11,14 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Lançamentos de Despesas</h1>
-        <a href="<?= base_url('despesas/novo') ?>" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm mr-1"></i> Nova Despesa
-        </a>
+        <div>
+            <a href="<?= base_url('despesas/importar-xml') ?>" class="btn btn-sm btn-info shadow-sm mr-2">
+                <i class="fas fa-file-code fa-sm mr-1"></i> Importar XML (NF-e)
+            </a>
+            <a href="<?= base_url('despesas/novo') ?>" class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm mr-1"></i> Nova Despesa
+            </a>
+        </div>
     </div>
 
 

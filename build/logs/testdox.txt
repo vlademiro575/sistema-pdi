@@ -1,0 +1,6 @@
+Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
+ [x] Parse nfe padrao com nfe proc
+ [x] Parse nfe sem wrapper nfe proc
+ [x] Parse xml invalido lanca excecao
+ [x] Parse xml vazio lanca excecao
+
