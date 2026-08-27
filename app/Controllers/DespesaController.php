@@ -220,6 +220,44 @@ class DespesaController extends BaseController
             return redirect()->back()->withInput()->with('erro', 'Erro ao atualizar despesa.');
         }
 
+        // Upload de novo arquivo, se houver
+
+        $arquivo = $this->request->getFile('comprovante');
+
+        if ($arquivo && $arquivo->isValid() && !$arquivo->hasMoved()) {
+
+            $novoNome = $arquivo->getRandomName();
+
+            $caminhoUpload = FCPATH . 'uploads/despesas/';
+
+
+            if (!is_dir($caminhoUpload)) {
+
+                mkdir($caminhoUpload, 0777, true);
+
+            }
+
+
+            $arquivo->move($caminhoUpload, $novoNome);
+
+
+            $this->anexoModel->insert([
+
+                'id_despesa'   => $id,
+
+                'nome_arquivo' => $arquivo->getClientName(),
+
+                'tipo'         => 'NOTA_FISCAL',
+
+                'url'          => 'uploads/despesas/' . $novoNome
+
+            ]);
+
+        }
+        //-- Fim do upload
+
+
+
         return redirect()->to('/despesas/editar/' . $id)->with('sucesso', 'Despesa atualizada!');
     }
 
