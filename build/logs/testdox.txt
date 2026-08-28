@@ -18,3 +18,11 @@ Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
  [x] Parse xml invalido lanca excecao
  [x] Parse xml vazio lanca excecao
 
+Usuario Crud (Tests\Unit\UsuarioCrud)
+ [x] Inserir usuario auditoria
+ [x] Atualizar usuario auditoria historico
+ [x] Excluir usuario alimenta historico
+ [x] Admin filter bloqueia nao logado
+ [x] Admin filter bloqueia nao admin
+ [x] Admin filter permite admin
+

@@ -96,3 +96,14 @@ $routes->group('despesas', ['filter' => 'auth'], function($routes) {
     $routes->get('rubricas-por-projeto/(:num)', 'DespesaController::getRubricasPorProjeto/$1');
 });
 
+// Módulo de Usuários (Apenas Administradores)
+$routes->group('usuarios', ['filter' => 'admin'], function($routes) {
+    $routes->get('/', 'UsuarioController::index');
+    $routes->get('novo', 'UsuarioController::new');
+    $routes->post('salvar', 'UsuarioController::create');
+    $routes->get('editar/(:num)', 'UsuarioController::edit/$1');
+    $routes->post('atualizar/(:num)', 'UsuarioController::update/$1');
+    $routes->get('deletar/(:num)', 'UsuarioController::delete/$1');
+});
+
+

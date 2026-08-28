@@ -53,6 +53,19 @@
             <span>Despesas</span>
         </a>
     </li>
+
+    <?php if (session()->get('perfil') === 'ADMIN'): ?>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">Administração</div>
+
+        <li class="nav-item <?= url_is('usuarios*') ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= base_url('usuarios') ?>">
+                <i class="fas fa-fw fa-users-cog"></i>
+                <span>Usuários</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
     <hr class="sidebar-divider d-none d-md-block">
 
     <div class="text-center d-none d-md-inline">

@@ -10,62 +10,80 @@ class UsuarioModel extends Model
     protected $primaryKey       = 'id_usuario';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    
-    // Desativado: o SQLite gerencia a lixeira através de triggers BEFORE DELETE
-    protected $useSoftDeletes   = false; 
+
+    // Desativado pois a retenção histórica é feita no SQLite via triggers
+    protected $useSoftDeletes   = false;
 
     // Colunas autorizadas para operações de escrita (INSERT/UPDATE)
     protected $allowedFields    = [
-        'nome', 
-        'email', 
-        'login', 
-        'senha', 
-        'perfil', 
-        'ativo', 
-        '_criado_por', 
-        '_atualizado_por'
+        'nome',
+        'email',
+        'login',
+        'senha',
+        'perfil',
+        'ativo',
+        '_criado_por',
+        '_criado_em',
+        '_atualizado_por',
+        '_atualizado_em',
+        '_deletado_por',
+        '_deletado_em',
+        '_operacao'
     ];
 
-    // Configuração dos Timestamps nativos do CodeIgniter 4
-    protected $useTimestamps    = true;
+    // Timestamps manuais via callbacks de auditoria
+    protected $useTimestamps    = false;
     protected $dateFormat       = 'datetime';
-    protected $createdField     = '_criado_em';
-    protected $updatedField     = '_atualizado_em';
 
-    // Registro dos Eventos do Model (Callbacks)
-    protected $beforeInsert     = ['preencherCriador'];
-    protected $beforeUpdate     = ['preencherAtualizador'];
+    // Callbacks de Auditoria
+    protected $beforeInsert     = ['setAuditoriaCriacao'];
+    protected $beforeUpdate     = ['setAuditoriaAtualizacao'];
+    protected $beforeDelete     = ['setAuditoriaExclusao'];
 
     /**
-     * Callback disparado automaticamente antes de criar um novo usuário (INSERT)
+     * Define quem criou o registro baseado na sessão ativa
      */
-    protected function preencherCriador(array $data): array
+    protected function setAuditoriaCriacao(array $data): array
     {
-        // Obtém a sessão ativa do CodeIgniter
-        $session = session();
-        
-        // Recupera o login armazenado na sessão (ex: setado após o login)
-        // Se for uma operação CLI (como Seeds) ou cadastro público, define um padrão
-        $usuarioLogado = $session->get('login') ?? 'sistema';
-
-        // No CI4, os dados da entidade ficam encapsulados dentro da chave 'data'
-        $data['data']['_criado_por']     = $usuarioLogado;
-        $data['data']['_atualizado_por'] = $usuarioLogado;
-
+        if (isset($data['data'])) {
+            $usuario = session()->get('login') ?? 'sistema';
+            $data['data']['_criado_por']     = $usuario;
+            $data['data']['_criado_em']      = date('Y-m-d H:i:s');
+            $data['data']['_operacao']       = 'INSERT';
+        }
         return $data;
     }
 
     /**
-     * Callback disparado automaticamente antes de modificar um usuário (UPDATE)
+     * Define quem atualizou o registro baseado na sessão ativa
      */
-    protected function preencherAtualizador(array $data): array
+    protected function setAuditoriaAtualizacao(array $data): array
     {
-        $session = session();
-        $usuarioLogado = $session->get('login') ?? 'sistema';
+        if (isset($data['data'])) {
+            $usuario = session()->get('login') ?? 'sistema';
+            $data['data']['_atualizado_por'] = $usuario;
+            $data['data']['_atualizado_em']  = date('Y-m-d H:i:s');
+            $data['data']['_operacao']       = 'UPDATE';
+        }
+        return $data;
+    }
 
-        // Atualiza apenas a autoria da modificação corrente
-        $data['data']['_atualizado_por'] = $usuarioLogado;
-
+    /**
+     * Define quem excluiu o registro antes do DELETE físico para alimentar a pseudo-tabela OLD da trigger
+     */
+    protected function setAuditoriaExclusao(array $data): array
+    {
+        if (!empty($data['id'])) {
+            $usuario = session()->get('login') ?? 'sistema';
+            $this->builder()
+                 ->whereIn($this->primaryKey, (array) $data['id'])
+                 ->update([
+                     '_atualizado_por' => $usuario,
+                     '_deletado_por'   => $usuario,
+                     '_deletado_em'    => date('Y-m-d H:i:s'),
+                     '_operacao'       => 'DELETE'
+                 ]);
+        }
         return $data;
     }
 }

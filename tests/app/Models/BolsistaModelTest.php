@@ -38,8 +38,8 @@ class BolsistaModelTest extends CIUnitTestCase
         // Dados base para passar na validação do model
         $dados = [
             'nome'  => 'Ana Teste',
-            'email' => 'ana.teste@ufc.br',
-            'cpf'   => '12345678900'
+            'email' => 'ana.teste.' . uniqid() . '@ufc.br',
+            'cpf'   => (string) rand(10000000000, 99999999999)
         ];
 
         // 3. Executar o Insert
