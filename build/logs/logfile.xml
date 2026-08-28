@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Tests\Unit\SefazXmlParserTest" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" tests="4" assertions="16" errors="0" failures="0" skipped="0" time="1.163210">
-    <testcase name="testParseNfePadraoComNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="19" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="8" time="1.149898"/>
-    <testcase name="testParseNfeSemWrapperNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="87" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="6" time="0.001311"/>
-    <testcase name="testParseXmlInvalidoLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="128" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.011209"/>
-    <testcase name="testParseXmlVazioLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="134" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.000791"/>
+  <testsuite name="/var/www/sistema-pdi/phpunit.dist.xml" tests="10" assertions="25" errors="0" failures="0" skipped="0" time="36.940140">
+    <testsuite name="App" tests="10" assertions="25" errors="0" failures="0" skipped="0" time="36.940140">
+      <testsuite name="App\Models\BolsistaModelTest" file="/var/www/sistema-pdi/tests/app/Models/BolsistaModelTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="13.235538">
+        <testcase name="testVerificaSeAuditoriaCriadoPorRegistaOUtilizadorDaSessao" file="/var/www/sistema-pdi/tests/app/Models/BolsistaModelTest.php" line="34" class="App\Models\BolsistaModelTest" classname="App.Models.BolsistaModelTest" assertions="2" time="13.235538"/>
+      </testsuite>
+      <testsuite name="ExampleDatabaseTest" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="11.908378">
+        <testcase name="testModelFindAll" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" line="17" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" assertions="1" time="4.857278"/>
+        <testcase name="testSoftDeleteLeavesRow" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" line="28" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" assertions="2" time="7.051100"/>
+      </testsuite>
+      <testsuite name="ExampleSessionTest" file="/var/www/sistema-pdi/tests/session/ExampleSessionTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.014003">
+        <testcase name="testSessionSimple" file="/var/www/sistema-pdi/tests/session/ExampleSessionTest.php" line="10" class="ExampleSessionTest" classname="ExampleSessionTest" assertions="1" time="0.014003"/>
+      </testsuite>
+      <testsuite name="HealthTest" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="11.519542">
+        <testcase name="testIsDefinedAppPath" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" line="12" class="HealthTest" classname="HealthTest" assertions="1" time="0.008102"/>
+        <testcase name="testBaseUrlHasBeenSet" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" line="17" class="HealthTest" classname="HealthTest" assertions="2" time="11.511440"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\SefazXmlParserTest" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" tests="4" assertions="16" errors="0" failures="0" skipped="0" time="0.262679">
+        <testcase name="testParseNfePadraoComNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="19" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="8" time="0.148926"/>
+        <testcase name="testParseNfeSemWrapperNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="87" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="6" time="0.001002"/>
+        <testcase name="testParseXmlInvalidoLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="128" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.112012"/>
+        <testcase name="testParseXmlVazioLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="134" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.000739"/>
+      </testsuite>
+    </testsuite>
   </testsuite>
 </testsuites>

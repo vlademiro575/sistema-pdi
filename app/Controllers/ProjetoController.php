@@ -187,7 +187,7 @@ class ProjetoController extends BaseController
             'titulo'   => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
             'projeto'  => $projeto,
             'rubricas' => $rubricaModel->where('id_projeto', $id)->findAll(),
-            'equipe'               => $projetoBolsistaModel->where('id_projeto', $id)->findAll(),
+            'equipe'               => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
             'bolsistas_disponiveis'=> $bolsistaModel->findAll() // Traz todos os bolsistas para o <select>
         ];
 

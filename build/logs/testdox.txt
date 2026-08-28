@@ -1,3 +1,17 @@
+Bolsista Model (App\Models\BolsistaModel)
+ [x] Verifica se auditoria criado por regista o utilizador da sessao
+
+Example Database
+ [x] Model find all
+ [x] Soft delete leaves row
+
+Example Session
+ [x] Session simple
+
+Health
+ [x] Is defined app path
+ [x] Base url has been set
+
 Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
  [x] Parse nfe padrao com nfe proc
  [x] Parse nfe sem wrapper nfe proc

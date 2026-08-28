@@ -62,4 +62,17 @@ class ProjetoBolsistaModel extends Model
         }
         return $data;
     }
+
+    /**
+     * Retorna os bolsistas vinculados ao projeto com os dados do bolsista (nome, CPF, email, etc.)
+     */
+    public function getBolsistasPorProjeto(int $idProjeto)
+    {
+        return $this->db->table('projetos_bolsistas pb')
+            ->select('pb.*, b.nome as bolsista_nome, b.cpf as bolsista_cpf, b.email as bolsista_email')
+            ->join('bolsistas b', 'b.id_bolsista = pb.id_bolsista', 'left')
+            ->where('pb.id_projeto', $idProjeto)
+            ->get()
+            ->getResultArray();
+    }
 }

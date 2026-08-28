@@ -181,7 +181,7 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                 <table class="table table-bordered table-hover" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
-                            <th>ID Bolsista</th>
+                            <th>Bolsista</th>
                             <th>Vigência</th>
                             <th class="text-right">Valor da Bolsa</th>
                             <th class="text-center">Status</th>
@@ -192,8 +192,17 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                         <?php if (!empty($equipe) && is_array($equipe)): ?>
                             <?php foreach ($equipe as $membro): ?>
                                 <tr>
-                                    <!-- Em um cenário real, você pode fazer um JOIN no Model para trazer o nome, aqui exibimos o ID -->
-                                    <td class="font-weight-bold text-dark">Cadastro #<?= esc($membro['id_bolsista']) ?></td>
+                                    <td>
+                                        <div class="font-weight-bold text-dark">
+                                            <?= esc($membro['bolsista_nome'] ?? ('Cadastro #' . $membro['id_bolsista'])) ?>
+                                        </div>
+                                        <?php if (!empty($membro['bolsista_cpf'])): ?>
+                                            <small class="text-muted"><i class="fas fa-id-card mr-1"></i>CPF: <?= esc($membro['bolsista_cpf']) ?></small>
+                                        <?php endif; ?>
+                                        <?php if (!empty($membro['bolsista_email'])): ?>
+                                            <br><small class="text-muted"><i class="fas fa-envelope mr-1"></i><?= esc($membro['bolsista_email']) ?></small>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <?= date('d/m/Y', strtotime($membro['data_inicio'])) ?> até 
                                         <?= $membro['data_fim'] ? date('d/m/Y', strtotime($membro['data_fim'])) : 'Indefinido' ?>
