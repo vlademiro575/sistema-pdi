@@ -277,6 +277,34 @@ class AuditoriaConsistenciaService
         }
 
         // -------------------------------------------------------------
+        // REGRA 7: Bolsista Cadastrado Mais de uma Vez no Mesmo Projeto (Duplicidade)
+        // -------------------------------------------------------------
+        $bolsistasDuplicados = $this->db->table('projetos_bolsistas pb')
+            ->select('pb.id_projeto, pb.id_bolsista, b.nome as bolsista_nome, p.codigo_projeto_fundacao, p.titulo as projeto_titulo, COUNT(*) as qtd_cadastros')
+            ->join('bolsistas b', 'b.id_bolsista = pb.id_bolsista')
+            ->join('projetos p', 'p.id_projeto = pb.id_projeto')
+            ->groupBy('pb.id_projeto, pb.id_bolsista')
+            ->having('qtd_cadastros >', 1)
+            ->get()
+            ->getResultArray();
+
+        foreach ($bolsistasDuplicados as $bdup) {
+            $idProjeto = (int) $bdup['id_projeto'];
+            $pendencias[] = [
+                'tipo'        => 'AVISO',
+                'categoria'   => 'Equipe & Bolsistas',
+                'id_projeto'  => $idProjeto,
+                'codigo'      => $bdup['codigo_projeto_fundacao'],
+                'titulo_proj' => $bdup['projeto_titulo'],
+                'regra'       => 'Bolsista com Vínculo Duplicado no Projeto',
+                'mensagem'    => "O bolsista '{$bdup['bolsista_nome']}' possui {$bdup['qtd_cadastros']} vínculos cadastrados neste mesmo projeto. Verifique e remova eventuais duplicidades.",
+                'acao_url'    => base_url("projetos/gerenciar/{$idProjeto}#bolsistas"),
+                'acao_texto'  => 'Gerenciar Bolsistas'
+            ];
+            $projetosComInconsistencia[$idProjeto] = true;
+        }
+
+        // -------------------------------------------------------------
         // Consolidação dos Totais e Resumo
         // -------------------------------------------------------------
         $totalErros   = count(array_filter($pendencias, fn($p) => $p['tipo'] === 'ERRO'));

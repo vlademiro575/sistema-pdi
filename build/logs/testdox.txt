@@ -2,6 +2,7 @@ Auditoria Consistencia (Tests\Unit\AuditoriaConsistencia)
  [x] Detecta discrepancia orcamento versus rubricas
  [x] Detecta despesa fora da vigencia
  [x] Detecta fundacao inexistente no projeto
+ [x] Detecta bolsista cadastrado mais de uma vez no mesmo projeto
 
 Bolsista Model (App\Models\BolsistaModel)
  [x] Verifica se auditoria criado por regista o utilizador da sessao

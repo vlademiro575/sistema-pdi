@@ -199,4 +199,74 @@ final class AuditoriaConsistenciaTest extends CIUnitTestCase
         // Limpeza
         $this->projetoModel->delete($idProjeto);
     }
+
+    public function testDetectaBolsistaCadastradoMaisDeUmaVezNoMesmoProjeto(): void
+    {
+        $bolsistaModel = new \App\Models\BolsistaModel();
+        $pbModel       = new \App\Models\ProjetoBolsistaModel();
+
+        // Cria bolsista
+        $cpf = (string) rand(10000000000, 99999999999);
+        $bolsistaModel->insert([
+            'nome'  => 'Bolsista Duplicado Teste',
+            'cpf'   => $cpf,
+            'email' => 'duplicado.' . uniqid() . '@teste.com'
+        ]);
+        $idBolsista = $bolsistaModel->getInsertID();
+
+        // Cria projeto
+        $cod = 'TESTE-DUP-' . uniqid();
+        $this->projetoModel->insert([
+            'id_professor'            => $this->idProf,
+            'id_fundacao'             => $this->idFund,
+            'codigo_projeto_fundacao' => $cod,
+            'titulo'                  => 'Projeto Teste Bolsista Duplicado',
+            'orcamento_total'         => 30000.00,
+            'data_inicio'             => '2026-01-01',
+            'data_fim'                => '2026-12-31'
+        ]);
+        $idProjeto = $this->projetoModel->getInsertID();
+
+        // Vincula o mesmo bolsista DUAS VEZES ao mesmo projeto
+        $pbModel->insert([
+            'id_projeto'  => $idProjeto,
+            'id_bolsista' => $idBolsista,
+            'valor_bolsa' => 500.00,
+            'data_inicio' => '2026-01-01',
+            'data_fim'    => '2026-06-30',
+            'status'      => 'ATIVO'
+        ]);
+        $idV1 = $pbModel->getInsertID();
+
+        $pbModel->insert([
+            'id_projeto'  => $idProjeto,
+            'id_bolsista' => $idBolsista,
+            'valor_bolsa' => 500.00,
+            'data_inicio' => '2026-07-01',
+            'data_fim'    => '2026-12-31',
+            'status'      => 'ATIVO'
+        ]);
+        $idV2 = $pbModel->getInsertID();
+
+        $resultado = $this->service->executarAuditoria();
+
+        $pendenciaEncontrada = false;
+        foreach ($resultado['pendencias'] as $p) {
+            if ($p['id_projeto'] == $idProjeto && $p['regra'] === 'Bolsista com Vínculo Duplicado no Projeto') {
+                $pendenciaEncontrada = true;
+                $this->assertEquals('AVISO', $p['tipo']);
+                $this->assertStringContainsString('Bolsista Duplicado Teste', $p['mensagem']);
+                $this->assertStringContainsString('2', $p['mensagem']);
+                break;
+            }
+        }
+
+        $this->assertTrue($pendenciaEncontrada, 'A auditoria deveria identificar bolsista com mais de um vínculo no mesmo projeto.');
+
+        // Limpeza
+        $pbModel->delete($idV1);
+        $pbModel->delete($idV2);
+        $this->projetoModel->delete($idProjeto);
+        $bolsistaModel->delete($idBolsista);
+    }
 }
