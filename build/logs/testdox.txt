@@ -1,5 +1,33 @@
 Auditoria Consistencia (Tests\Unit\AuditoriaConsistencia)
- [ ] Detecta discrepancia orcamento versus rubricas
- [ ] Detecta despesa fora da vigencia
+ [x] Detecta discrepancia orcamento versus rubricas
+ [x] Detecta despesa fora da vigencia
  [x] Detecta fundacao inexistente no projeto
+
+Bolsista Model (App\Models\BolsistaModel)
+ [x] Verifica se auditoria criado por regista o utilizador da sessao
+
+Example Database
+ [x] Model find all
+ [x] Soft delete leaves row
+
+Example Session
+ [x] Session simple
+
+Health
+ [x] Is defined app path
+ [x] Base url has been set
+
+Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
+ [x] Parse nfe padrao com nfe proc
+ [x] Parse nfe sem wrapper nfe proc
+ [x] Parse xml invalido lanca excecao
+ [x] Parse xml vazio lanca excecao
+
+Usuario Crud (Tests\Unit\UsuarioCrud)
+ [x] Inserir usuario auditoria
+ [x] Atualizar usuario auditoria historico
+ [x] Excluir usuario alimenta historico
+ [x] Admin filter bloqueia nao logado
+ [x] Admin filter bloqueia nao admin
+ [x] Admin filter permite admin
 

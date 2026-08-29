@@ -35,6 +35,7 @@ class AuditoriaConsistenciaService
         $totalProjetos = count($projetos);
 
         // -------------------------------------------------------------
+        // REGRA 1 & 2: Orçamento Total x Soma das Rubricas e Saldos
         // REGRA 1: Integridade de Vínculos (Fundação Inexistente)
         // REGRA 2 & 3: Orçamento Total x Soma das Rubricas e Saldos
         // -------------------------------------------------------------
