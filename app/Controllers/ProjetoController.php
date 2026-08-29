@@ -183,12 +183,15 @@ class ProjetoController extends BaseController
         $projetoBolsistaModel = new ProjetoBolsistaModel();
         $bolsistaModel = new BolsistaModel();
 
+        $abaAtiva = $this->request->getGet('aba') ?? session()->getFlashdata('aba') ?? 'rubricas';
+
         $data = [
-            'titulo'   => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
-            'projeto'  => $projeto,
-            'rubricas' => $rubricaModel->where('id_projeto', $id)->findAll(),
+            'titulo'               => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
+            'projeto'              => $projeto,
+            'rubricas'             => $rubricaModel->where('id_projeto', $id)->findAll(),
             'equipe'               => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
-            'bolsistas_disponiveis'=> $bolsistaModel->findAll() // Traz todos os bolsistas para o <select>
+            'bolsistas_disponiveis'=> $bolsistaModel->findAll(), // Traz todos os bolsistas para o <select>
+            'abaAtiva'             => $abaAtiva
         ];
 
         return view('projetos/gerenciar', $data);

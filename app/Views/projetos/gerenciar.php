@@ -68,17 +68,19 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
         </div>
     </div>
 
+    <?php $abaAtiva = $abaAtiva ?? 'rubricas'; ?>
+
     <!-- Navegação em Abas (Mestre-Detalhe) -->
     <ul class="nav nav-tabs font-weight-bold" id="projetoTab" role="tablist">
         <?php /* ABA DE RUBRICAS */ ?>
         <li class="nav-item">
-            <a class="nav-link active" id="rubricas-tab" data-toggle="tab" href="#rubricas" role="tab" aria-controls="rubricas" aria-selected="true">
+            <a class="nav-link <?= ($abaAtiva === 'rubricas') ? 'active' : '' ?>" id="rubricas-tab" data-toggle="tab" href="#rubricas" role="tab" aria-controls="rubricas" aria-selected="<?= ($abaAtiva === 'rubricas') ? 'true' : 'false' ?>">
                 <i class="fas fa-wallet mr-1"></i> Orçamento & Rubricas
             </a>
         </li>
         <?php /* ABA DE BOLSISTAS */ ?>
         <li class="nav-item">
-            <a class="nav-link" id="bolsistas-tab" data-toggle="tab" href="#bolsistas" role="tab" aria-controls="bolsistas" aria-selected="false">
+            <a class="nav-link <?= ($abaAtiva === 'bolsistas') ? 'active' : '' ?>" id="bolsistas-tab" data-toggle="tab" href="#bolsistas" role="tab" aria-controls="bolsistas" aria-selected="<?= ($abaAtiva === 'bolsistas') ? 'true' : 'false' ?>">
                 <i class="fas fa-user-graduate mr-1"></i> Equipe (Bolsistas)
             </a>
         </li>
@@ -88,7 +90,7 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
     <div class="tab-content bg-white shadow-sm border border-top-0 p-4 mb-4" id="projetoTabContent">
         
         <!-- ABA: RUBRICAS -->
-        <div class="tab-pane fade show active" id="rubricas" role="tabpanel" aria-labelledby="rubricas-tab">
+        <div class="tab-pane fade <?= ($abaAtiva === 'rubricas') ? 'show active' : '' ?>" id="rubricas" role="tabpanel" aria-labelledby="rubricas-tab">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="m-0 font-weight-bold text-gray-800">Rubricas Alocadas</h5>
                 <button type="button" class="btn btn-primary btn-sm shadow-sm" data-toggle="modal" data-target="#modalNovaRubrica">
@@ -169,7 +171,7 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
 
 
         <!-- ABA BOLSISTAS -->
-        <div class="tab-pane fade" id="bolsistas" role="tabpanel" aria-labelledby="bolsistas-tab">
+        <div class="tab-pane fade <?= ($abaAtiva === 'bolsistas') ? 'show active' : '' ?>" id="bolsistas" role="tabpanel" aria-labelledby="bolsistas-tab">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="m-0 font-weight-bold text-gray-800">Equipe do Projeto</h5>
                 <button type="button" class="btn btn-primary btn-sm shadow-sm" data-toggle="modal" data-target="#modalNovoBolsista">
@@ -488,15 +490,24 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
 <?= $this->section('scripts') ?>
 <script>
     $(document).ready(function() {
-        // Ativação da aba correta se houver hash na URL (ex: #bolsistas)
+        // Ativação da aba correta via hash (#bolsistas) ou parâmetro (?aba=bolsistas)
         var hash = window.location.hash;
-        if (hash) {
-            $('.nav-tabs a[href="' + hash + '"]').tab('show');
+        var urlParams = new URLSearchParams(window.location.search);
+        var abaParam = urlParams.get('aba');
+
+        if (hash && (hash === '#bolsistas' || hash === '#rubricas')) {
+            $('#projetoTab a[href="' + hash + '"]').tab('show');
+        } else if (abaParam && (abaParam === 'bolsistas' || abaParam === 'rubricas')) {
+            $('#projetoTab a[href="#' + abaParam + '"]').tab('show');
         }
 
-        // Atualiza a URL hash ao trocar de aba
-        $('.nav-tabs a').on('shown.bs.tab', function(e) {
-            window.location.hash = e.target.hash;
+        // Atualiza a URL hash ao trocar de aba sem saltar a tela
+        $('#projetoTab a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            if (history.replaceState) {
+                history.replaceState(null, null, e.target.hash);
+            } else {
+                window.location.hash = e.target.hash;
+            }
         });
 
         // Intercepta o clique no botão de Ajuste para injetar o ID correto no formulário
