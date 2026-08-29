@@ -17,6 +17,9 @@ Health
  [x] Is defined app path
  [x] Base url has been set
 
+Projeto Bolsista (Tests\Unit\ProjetoBolsista)
+ [x] Vinculo e alteracao de bolsista no projeto
+
 Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
  [x] Parse nfe padrao com nfe proc
  [x] Parse nfe sem wrapper nfe proc

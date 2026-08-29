@@ -66,6 +66,7 @@ $routes->group('rubricas', ['filter' => 'auth'], function($routes) {
 // Módulo de Vínculo de Bolsistas (Detalhe do Projeto)
 $routes->group('projetos-bolsistas', ['filter' => 'auth'], function($routes) {
     $routes->post('create', 'ProjetoBolsistaController::create');
+    $routes->post('update/(:num)', 'ProjetoBolsistaController::update/$1');
     $routes->get('delete/(:num)', 'ProjetoBolsistaController::delete/$1');
 });
 

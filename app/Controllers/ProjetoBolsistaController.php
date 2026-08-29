@@ -41,10 +41,48 @@ class ProjetoBolsistaController extends BaseController
         ];
 
         if ($this->projetoBolsistaModel->insert($dados)) {
-            return redirect()->to("/projetos/gerenciar/{$idProjeto}")->with('sucesso', 'Bolsista vinculado com sucesso!');
+            return redirect()->to("/projetos/gerenciar/{$idProjeto}#bolsistas")->with('sucesso', 'Bolsista vinculado com sucesso!');
         }
 
         return redirect()->back()->withInput()->with('erro', 'Erro ao vincular o bolsista.');
+    }
+
+    /**
+     * Atualiza os dados do vínculo do bolsista (datas, valor, status)
+     */
+    public function update($id)
+    {
+        $vinculo = $this->projetoBolsistaModel->find($id);
+
+        if (!$vinculo) {
+            return redirect()->back()->with('erro', 'Vínculo do bolsista não encontrado.');
+        }
+
+        $idProjeto = $vinculo['id_projeto'];
+
+        $rules = [
+            'valor_bolsa' => 'required|numeric|greater_than[0]',
+            'data_inicio' => 'required|valid_date',
+            'data_fim'    => 'permit_empty|valid_date',
+            'status'      => 'required|in_list[ATIVO,INATIVO,DESLIGADO]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $dados = [
+            'valor_bolsa' => $this->request->getPost('valor_bolsa'),
+            'data_inicio' => $this->request->getPost('data_inicio'),
+            'data_fim'    => $this->request->getPost('data_fim') ?: null,
+            'status'      => $this->request->getPost('status')
+        ];
+
+        if ($this->projetoBolsistaModel->update($id, $dados)) {
+            return redirect()->to("/projetos/gerenciar/{$idProjeto}#bolsistas")->with('sucesso', 'Vínculo do bolsista atualizado com sucesso!');
+        }
+
+        return redirect()->back()->withInput()->with('erro', 'Erro ao atualizar o bolsista.');
     }
 
     public function delete($id)
@@ -58,9 +96,9 @@ class ProjetoBolsistaController extends BaseController
         $idProjeto = $vinculo['id_projeto'];
 
         if ($this->projetoBolsistaModel->delete($id)) {
-            return redirect()->to("/projetos/gerenciar/{$idProjeto}")->with('sucesso', 'Bolsista desvinculado com sucesso!');
+            return redirect()->to("/projetos/gerenciar/{$idProjeto}#bolsistas")->with('sucesso', 'Bolsista desvinculado com sucesso!');
         }
 
-        return redirect()->to("/projetos/gerenciar/{$idProjeto}")->with('erro', 'Erro ao desvincular bolsista.');
+        return redirect()->to("/projetos/gerenciar/{$idProjeto}#bolsistas")->with('erro', 'Erro ao desvincular bolsista.');
     }
 }

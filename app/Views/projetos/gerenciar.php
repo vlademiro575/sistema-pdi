@@ -222,8 +222,19 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                                         <span class="badge <?= $badgeStatus ?>"><?= esc($membro['status']) ?></span>
                                     </td>
                                     <td class="text-center">
+                                        <button type="button" class="btn btn-info btn-circle btn-sm shadow-sm btn-editar-bolsista" 
+                                                data-toggle="modal" data-target="#modalEditarBolsista"
+                                                data-idprojetobolsista="<?= $membro['id_projeto_bolsista'] ?>"
+                                                data-nomebolsista="<?= esc($membro['bolsista_nome'] ?? ('Cadastro #' . $membro['id_bolsista'])) ?>"
+                                                data-valorbolsa="<?= $membro['valor_bolsa'] ?>"
+                                                data-datainicio="<?= $membro['data_inicio'] ?>"
+                                                data-datafim="<?= $membro['data_fim'] ?>"
+                                                data-status="<?= $membro['status'] ?>"
+                                                title="Alterar Vínculo do Bolsista">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
                                         <a href="<?= base_url('projetos-bolsistas/delete/' . $membro['id_projeto_bolsista']) ?>" 
-                                           class="btn btn-danger btn-circle btn-sm" 
+                                           class="btn btn-danger btn-circle btn-sm shadow-sm" 
                                            onclick="return confirm('Deseja desvincular este bolsista do projeto?');"
                                            title="Remover Vínculo">
                                             <i class="fas fa-trash"></i>
@@ -364,6 +375,64 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
         </div>
     </div>
 
+    <!-- MODAL: Alterar Bolsista do Projeto -->
+    <div class="modal fade" id="modalEditarBolsista" tabindex="-1" role="dialog" aria-labelledby="modalEditarBolsistaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form id="formEditarBolsista" action="" method="post">
+                    <?= csrf_field() ?>
+
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title font-weight-bold" id="modalEditarBolsistaLabel">
+                            <i class="fas fa-user-edit mr-1"></i> Alterar Vínculo do Bolsista
+                        </h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Bolsista</label>
+                            <input type="text" id="edit_nome_bolsista" class="form-control font-weight-bold bg-light" readonly disabled>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 form-group mb-3">
+                                <label for="edit_valor_bolsa" class="font-weight-bold">Valor Mensal (R$) <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" min="0.01" name="valor_bolsa" id="edit_valor_bolsa" class="form-control" required>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label for="edit_data_inicio" class="font-weight-bold">Data de Início <span class="text-danger">*</span></label>
+                                <input type="date" name="data_inicio" id="edit_data_inicio" class="form-control" required>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label for="edit_data_fim" class="font-weight-bold">Data Final Prevista</label>
+                                <input type="date" name="data_fim" id="edit_data_fim" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="edit_status" class="font-weight-bold">Status do Vínculo <span class="text-danger">*</span></label>
+                            <select name="status" id="edit_status" class="form-control" required>
+                                <option value="ATIVO">Ativo</option>
+                                <option value="INATIVO">Inativo</option>
+                                <option value="DESLIGADO">Desligado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-info px-4 font-weight-bold">
+                            <i class="fas fa-save mr-1"></i> Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL: Lançamento Manual -->
 <div class="modal fade" id="modalAjusteRubrica" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -415,14 +484,42 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
 </div>
 
 <?= $this->endSection() ?>
-<?php /* Para que o Modal saiba em qual rubrica o ajuste está sendo feito */ ?>
+<?php /* Para que os Modais saibam os dados corretos ao serem abertos */ ?>
 <?= $this->section('scripts') ?>
 <script>
     $(document).ready(function() {
+        // Ativação da aba correta se houver hash na URL (ex: #bolsistas)
+        var hash = window.location.hash;
+        if (hash) {
+            $('.nav-tabs a[href="' + hash + '"]').tab('show');
+        }
+
+        // Atualiza a URL hash ao trocar de aba
+        $('.nav-tabs a').on('shown.bs.tab', function(e) {
+            window.location.hash = e.target.hash;
+        });
+
         // Intercepta o clique no botão de Ajuste para injetar o ID correto no formulário
         $('.btn-ajuste').on('click', function() {
             var idRubrica = $(this).data('idrubrica');
             $('#input_id_rubrica_ajuste').val(idRubrica);
+        });
+
+        // Intercepta o clique no botão de Editar Bolsista para preencher os campos do formulário
+        $('.btn-editar-bolsista').on('click', function() {
+            var idProjetoBolsista = $(this).data('idprojetobolsista');
+            var nomeBolsista      = $(this).data('nomebolsista');
+            var valorBolsa        = $(this).data('valorbolsa');
+            var dataInicio        = $(this).data('datainicio');
+            var dataFim           = $(this).data('datafim');
+            var status            = $(this).data('status');
+
+            $('#formEditarBolsista').attr('action', '<?= base_url('projetos-bolsistas/update') ?>/' + idProjetoBolsista);
+            $('#edit_nome_bolsista').val(nomeBolsista);
+            $('#edit_valor_bolsa').val(valorBolsa);
+            $('#edit_data_inicio').val(dataInicio);
+            $('#edit_data_fim').val(dataFim || '');
+            $('#edit_status').val(status);
         });
     });
 </script>
