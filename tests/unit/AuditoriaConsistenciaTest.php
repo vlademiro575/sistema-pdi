@@ -14,6 +14,8 @@ final class AuditoriaConsistenciaTest extends CIUnitTestCase
     protected ProjetoModel $projetoModel;
     protected RubricaModel $rubricaModel;
     protected DespesaModel $despesaModel;
+    protected int $idProf;
+    protected int $idFund;
 
     protected function setUp(): void
     {
@@ -29,19 +31,40 @@ final class AuditoriaConsistenciaTest extends CIUnitTestCase
             'perfil' => 'ADMIN',
             'logado' => true
         ]);
+
+        $db = \Config\Database::connect();
+        $prof = $db->table('professores')->get()->getFirstRow('array');
+        if (!$prof) {
+            $db->table('professores')->insert([
+                'nome'  => 'Prof Teste Auditoria',
+                'cpf'   => (string) rand(10000000000, 99999999999),
+                'email' => 'prof.' . uniqid() . '@ufc.br'
+            ]);
+            $this->idProf = (int) $db->insertID();
+        } else {
+            $this->idProf = (int) $prof['id_professor'];
+        }
+
+        $fund = $db->table('fundacoes')->get()->getFirstRow('array');
+        if (!$fund) {
+            $db->table('fundacoes')->insert([
+                'sigla' => 'F' . rand(100, 999),
+                'nome'  => 'Fundacao Teste Auditoria',
+                'tipo'  => 'FUNDACAO_APOIO'
+            ]);
+            $this->idFund = (int) $db->insertID();
+        } else {
+            $this->idFund = (int) $fund['id_fundacao'];
+        }
     }
 
     public function testDetectaDiscrepanciaOrcamentoVersusRubricas(): void
     {
         // 1. Cria um projeto com orçamento de R$ 100.000,00
-        $db = \Config\Database::connect();
-        $idProf = $db->table('professores')->select('id_professor')->get()->getRowArray()['id_professor'] ?? 1;
-        $idFund = $db->table('fundacoes')->select('id_fundacao')->get()->getRowArray()['id_fundacao'] ?? 1;
-
         $cod = 'TESTE-AUD-' . uniqid();
         $this->projetoModel->insert([
-            'id_professor'            => $idProf,
-            'id_fundacao'             => $idFund,
+            'id_professor'            => $this->idProf,
+            'id_fundacao'             => $this->idFund,
             'codigo_projeto_fundacao' => $cod,
             'titulo'                  => 'Projeto Teste Auditoria',
             'orcamento_total'         => 100000.00,
@@ -84,14 +107,10 @@ final class AuditoriaConsistenciaTest extends CIUnitTestCase
 
     public function testDetectaDespesaForaDaVigencia(): void
     {
-        $db = \Config\Database::connect();
-        $idProf = $db->table('professores')->select('id_professor')->get()->getRowArray()['id_professor'] ?? 1;
-        $idFund = $db->table('fundacoes')->select('id_fundacao')->get()->getRowArray()['id_fundacao'] ?? 1;
-
         $cod = 'TESTE-VIG-' . uniqid();
         $this->projetoModel->insert([
-            'id_professor'            => $idProf,
-            'id_fundacao'             => $idFund,
+            'id_professor'            => $this->idProf,
+            'id_fundacao'             => $this->idFund,
             'codigo_projeto_fundacao' => $cod,
             'titulo'                  => 'Projeto Vigencia Teste',
             'orcamento_total'         => 50000.00,
@@ -140,6 +159,44 @@ final class AuditoriaConsistenciaTest extends CIUnitTestCase
         $this->despesaModel->delete($idDespesa);
         $db->table('movimentacoes_rubricas')->where('id_rubrica', $idRubrica)->delete();
         $this->rubricaModel->delete($idRubrica);
+        $this->projetoModel->delete($idProjeto);
+    }
+
+    public function testDetectaFundacaoInexistenteNoProjeto(): void
+    {
+        $db = \Config\Database::connect();
+
+        // Desativa FK temporariamente para simular chave inconsistente
+        $db->query('PRAGMA foreign_keys = OFF;');
+
+        $cod = 'TESTE-NOFUND-' . uniqid();
+        $this->projetoModel->insert([
+            'id_professor'            => $this->idProf,
+            'id_fundacao'             => 999999,
+            'codigo_projeto_fundacao' => $cod,
+            'titulo'                  => 'Projeto Sem Fundacao Valida',
+            'orcamento_total'         => 20000.00,
+            'data_inicio'             => '2026-01-01',
+            'data_fim'                => '2026-12-31'
+        ]);
+        $idProjeto = $this->projetoModel->getInsertID();
+        $db->query('PRAGMA foreign_keys = ON;');
+
+        $resultado = $this->service->executarAuditoria();
+
+        $pendenciaEncontrada = false;
+        foreach ($resultado['pendencias'] as $p) {
+            if ($p['id_projeto'] == $idProjeto && $p['regra'] === 'Fundação Inexistente ou Inválida') {
+                $pendenciaEncontrada = true;
+                $this->assertEquals('ERRO', $p['tipo']);
+                $this->assertStringContainsString('999999', $p['mensagem']);
+                break;
+            }
+        }
+
+        $this->assertTrue($pendenciaEncontrada, 'A auditoria deveria identificar que a fundação apontada pelo projeto não existe.');
+
+        // Limpeza
         $this->projetoModel->delete($idProjeto);
     }
 }

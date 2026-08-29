@@ -62,3 +62,54 @@ DEBUG - 2026-08-29 00:52:57 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-08-29 00:53:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-08-29 00:53:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-08-29 00:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 00:57:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 00:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 00:59:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 00:59:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 00:59:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 00:59:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 01:01:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 01:01:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 01:01:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 01:01:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 01:01:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-29 01:04:26 --> FOREIGN KEY constraint failed
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH/BaseModel.php(899): CodeIgniter\Model->doInsert()
+ 7 SYSTEMPATH/Model.php(670): CodeIgniter\BaseModel->insert()
+ 8 ROOTPATH/tests/unit/AuditoriaConsistenciaTest.php(42): CodeIgniter\Model->insert()
+ 9 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(1548): Tests\Unit\AuditoriaConsistenciaTest->testDetectaDiscrepanciaOrcamentoVersusRubricas()
+10 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(686): PHPUnit\Framework\TestCase->runTest()
+11 VENDORPATH/phpunit/phpunit/src/Framework/TestRunner.php(106): PHPUnit\Framework\TestCase->runBare()
+12 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(516): PHPUnit\Framework\TestRunner->run()
+13 VENDORPATH/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+14 VENDORPATH/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+15 VENDORPATH/phpunit/phpunit/src/TextUI/Application.php(204): PHPUnit\TextUI\TestRunner->run()
+16 VENDORPATH/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+17 VENDORPATH/bin/phpunit(122): include('/var/www/sistema-pdi/vendor/phpunit/phpunit/phpunit')
+DEBUG - 2026-08-29 01:04:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-29 01:04:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-29 01:04:30 --> FOREIGN KEY constraint failed
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH/BaseModel.php(899): CodeIgniter\Model->doInsert()
+ 7 SYSTEMPATH/Model.php(670): CodeIgniter\BaseModel->insert()
+ 8 ROOTPATH/tests/unit/AuditoriaConsistenciaTest.php(92): CodeIgniter\Model->insert()
+ 9 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(1548): Tests\Unit\AuditoriaConsistenciaTest->testDetectaDespesaForaDaVigencia()
+10 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(686): PHPUnit\Framework\TestCase->runTest()
+11 VENDORPATH/phpunit/phpunit/src/Framework/TestRunner.php(106): PHPUnit\Framework\TestCase->runBare()
+12 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(516): PHPUnit\Framework\TestRunner->run()
+13 VENDORPATH/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+14 VENDORPATH/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+15 VENDORPATH/phpunit/phpunit/src/TextUI/Application.php(204): PHPUnit\TextUI\TestRunner->run()
+16 VENDORPATH/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+17 VENDORPATH/bin/phpunit(122): include('/var/www/sistema-pdi/vendor/phpunit/phpunit/phpunit')

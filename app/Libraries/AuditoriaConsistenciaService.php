@@ -35,12 +35,30 @@ class AuditoriaConsistenciaService
         $totalProjetos = count($projetos);
 
         // -------------------------------------------------------------
-        // REGRA 1 & 2: Orçamento Total x Soma das Rubricas e Saldos
+        // REGRA 1: Integridade de Vínculos (Fundação Inexistente)
+        // REGRA 2 & 3: Orçamento Total x Soma das Rubricas e Saldos
         // -------------------------------------------------------------
         foreach ($projetos as $proj) {
             $idProjeto = (int) $proj['id_projeto'];
             $codProj   = $proj['codigo_projeto_fundacao'];
             $orcamento = (float) $proj['orcamento_total'];
+
+            // Checagem de Fundação Inexistente
+            if (empty($proj['fundacao_nome'])) {
+                $idFundacao = $proj['id_fundacao'] ?? 'não informado';
+                $pendencias[] = [
+                    'tipo'        => 'ERRO',
+                    'categoria'   => 'Vínculos Institucionais',
+                    'id_projeto'  => $idProjeto,
+                    'codigo'      => $codProj,
+                    'titulo_proj' => $proj['titulo'],
+                    'regra'       => 'Fundação Inexistente ou Inválida',
+                    'mensagem'    => "O projeto está vinculado à fundação com ID #{$idFundacao}, mas esse registro não existe na tabela de fundações.",
+                    'acao_url'    => base_url("projetos/editar/{$idProjeto}"),
+                    'acao_texto'  => 'Vincular Fundação'
+                ];
+                $projetosComInconsistencia[$idProjeto] = true;
+            }
 
             $rubricas = $this->db->table('rubricas')
                 ->where('id_projeto', $idProjeto)
