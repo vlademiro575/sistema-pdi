@@ -19,9 +19,18 @@ class ProfessorController extends BaseController
      */
     public function index()
     {
+        $termo = trim((string) $this->request->getGet('nome'));
+
+        $query = $this->professorModel->orderBy('nome', 'ASC');
+
+        if (!empty($termo)) {
+            $query->like('nome', $termo);
+        }
+
         $data = [
-            'titulo'    => 'Gerenciamento de Professores',
-            'professores' => $this->professorModel->orderBy('nome', 'ASC')->findAll()
+            'titulo'      => 'Gerenciamento de Professores',
+            'professores' => $query->findAll(),
+            'termo'       => $termo
         ];
 
         return view('professores/index', $data);
