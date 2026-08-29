@@ -21,7 +21,7 @@ class ProfessorController extends BaseController
     {
         $data = [
             'titulo'    => 'Gerenciamento de Professores',
-            'professores' => $this->professorModel->findAll()
+            'professores' => $this->professorModel->orderBy('nome', 'ASC')->findAll()
         ];
 
         return view('professores/index', $data);
