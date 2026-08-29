@@ -106,4 +106,9 @@ $routes->group('usuarios', ['filter' => 'admin'], function($routes) {
     $routes->get('deletar/(:num)', 'UsuarioController::delete/$1');
 });
 
+// Módulo de Auditoria e Verificação de Pendências
+$routes->group('auditoria', ['filter' => 'auth'], function($routes) {
+    $routes->get('/', 'AuditoriaController::index');
+});
+
 

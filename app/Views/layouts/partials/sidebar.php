@@ -54,6 +54,13 @@
         </a>
     </li>
 
+    <li class="nav-item <?= url_is('auditoria*') ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('auditoria') ?>">
+            <i class="fas fa-fw fa-shield-alt"></i>
+            <span>Verificar Pendências</span>
+        </a>
+    </li>
+
     <?php if (session()->get('perfil') === 'ADMIN'): ?>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">Administração</div>

@@ -1,3 +1,7 @@
+Auditoria Consistencia (Tests\Unit\AuditoriaConsistencia)
+ [x] Detecta discrepancia orcamento versus rubricas
+ [x] Detecta despesa fora da vigencia
+
 Bolsista Model (App\Models\BolsistaModel)
  [x] Verifica se auditoria criado por regista o utilizador da sessao
 
