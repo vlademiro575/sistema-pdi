@@ -20,6 +20,8 @@ Com ele, você pode controlar o orçamento da pesquisa, o pagamento de bolsistas
 * 👥 **Gestão de Recursos Humanos:** Cadastro de professores, coordenadores e bolsistas.
 * 🧾 **Controle de Despesas e Extratos:** Registro de compras, inserção de notas fiscais, estornos e geração automática de extratos de movimentação.
 
+[https://vlademiro575.github.io/sistema-pdi/](https://vlademiro575.github.io/sistema-pdi/)
+
 ---
 
 ## 💻 Passo a Passo de Instalação (Para Desenvolvedores)
