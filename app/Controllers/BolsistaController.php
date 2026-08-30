@@ -27,10 +27,26 @@ class BolsistaController extends BaseController
             $query->like('nome', $termo);
         }
 
+        $bolsistas = $query->findAll();
+
+        // Carrega o histórico de alterações ordenado decrescente por _atualizado_em
+        $db = \Config\Database::connect();
+        $historicosRaw = $db->table('bolsistas_historico')
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorBolsista = [];
+        foreach ($historicosRaw as $h) {
+            $historicosPorBolsista[$h['id_bolsista']][] = $h;
+        }
+
         $data = [
-            'titulo'    => 'Gerenciamento de Bolsistas',
-            'bolsistas' => $query->findAll(),
-            'termo'     => $termo
+
+            'titulo'                => 'Gerenciamento de Bolsistas',
+            'bolsistas'             => $bolsistas,
+            'historicosPorBolsista' => $historicosPorBolsista,
+            'termo'                 => $termo
         ];
 
         return view('bolsistas/index', $data);
