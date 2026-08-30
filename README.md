@@ -13,6 +13,8 @@ Com ele, você pode controlar o orçamento da pesquisa, o pagamento de bolsistas
 * **Automação de Saldos:** O saldo do projeto se atualiza sozinho. Assim que uma despesa é inserida, o sistema desconta o valor da categoria correta e gera um extrato, funcionando como a sua conta bancária.
 * **Seguro e Descentralizado:** Desenvolvido com proteção de senhas modernas e perfis de acesso. Cada pessoa (Coordenador, Bolsista, Administrador) só enxerga o que tem permissão para ver.
 * **Fácil Instalação:** Não exige servidores de banco de dados pesados, rodando de forma ágil e segura em qualquer ambiente através do SQLite. O sistema foi projetado para aceitar outros bancos mas, por enquanto, apenas o SQLite está sendo usado por questões de praticidade durante o desenvolvimento/testes.
+* **Site oficial:** [https://vlademiro575.github.io/sistema-pdi/](https://vlademiro575.github.io/sistema-pdi/)
+
 
 ## 🛠️ Funcionalidades
 * 📁 **Gestão de Projetos:** Cadastro completo de projetos vinculando o professor responsável, a fundação financiadora e os prazos de vigência.
@@ -20,7 +22,6 @@ Com ele, você pode controlar o orçamento da pesquisa, o pagamento de bolsistas
 * 👥 **Gestão de Recursos Humanos:** Cadastro de professores, coordenadores e bolsistas.
 * 🧾 **Controle de Despesas e Extratos:** Registro de compras, inserção de notas fiscais, estornos e geração automática de extratos de movimentação.
 
-[https://vlademiro575.github.io/sistema-pdi/](https://vlademiro575.github.io/sistema-pdi/)
 
 ---
 
