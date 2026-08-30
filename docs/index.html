@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema PDI - Gestão de Projetos de Pesquisa</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #3182ce;
+            --accent: #e2e8f0;
+            --bg-light: #f7fafc;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --code-bg: #2d3748;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a4365 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: -3rem auto 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .intro-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .intro-card h2 {
+            margin-top: 0;
+            border: none;
+            padding-bottom: 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .stack-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .terminal {
+            background: var(--code-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .terminal-header {
+            background: #1a202c;
+            padding: 0.5rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #fc8181; }
+        .dot.yellow { background: #f6ad55; }
+        .dot.green { background: #68d391; }
+
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            color: #e2e8f0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: var(--bg-light);
+            border-top: 1px solid var(--accent);
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 4rem 1rem; }
+            header h1 { font-size: 2rem; }
+            .container { margin-top: 0; padding: 1rem; }
+            .intro-card { margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🚀 Sistema PDI</h1>
+        <p>A plataforma definitiva para a gestão administrativa e financeira de projetos de pesquisa acadêmica, desenvolvimento e inovação.</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-card">
+            <h2>📖 O que é o Sistema PDI?</h2>
+            <p>Imagine um assistente financeiro e administrativo criado especialmente para professores, pesquisadores, universidades e fundações de apoio (como FCPC, FASTEF, etc.)[cite: 1].</p>
+            <p>O <strong>Sistema PDI</strong> acaba com a confusão das planilhas de Excel e a papelada física, centralizando todo o dinheiro de um projeto de pesquisa, o pagamento de bolsistas e as compras de equipamentos em um só lugar[cite: 1]. A ideia é simples: <strong>devolver o tempo do pesquisador para a ciência</strong>, tirando de suas costas a burocracia complexa da prestação de contas governamental para órgãos como o TCU e CGU[cite: 1].</p>
+        </div>
+
+        <section>
+            <h2>✨ Funcionalidades e Características (MVP)</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>📄 Leitura Inteligente (OCR)</h3>
+                    <p>Envio de comprovantes em PDF ou Imagem com extração automática de dados (CNPJ, data, valor) pela Inteligência Artificial para acelerar a prestação de contas[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <h3>💰 Controle Orçamentário</h3>
+                    <p>Gestão clara do dinheiro dividido em categorias (Custeio, Capital, Bolsas)[cite: 1]. O saldo se atualiza sozinho assim que uma despesa é inserida, alterada ou estornada[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <h3>👥 Gestão de Equipes</h3>
+                    <p>Cadastro e alocação de coordenadores e bolsistas nos projetos, controlando prazos de vigência, valores das bolsas e compatibilidade[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <h3>🛡️ Auditoria Implacável</h3>
+                    <p>A arquitetura usa "Shadow Tables" (Lixeira Histórica). Toda exclusão ou alteração de dados gera um registro imutável com autoria e data, garantindo compliance público[cite: 1].</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>💻 Arquitetura e Stack Tecnológico</h2>
+            <p>O sistema foi construído com as melhores práticas de engenharia de software, utilizando o padrão MVC (Model-View-Controller) e garantindo portabilidade[cite: 1].</p>
+            <div class="stack-container">
+                <span class="badge">PHP 8+</span>
+                <span class="badge">CodeIgniter 4</span>
+                <span class="badge">SQLite 3</span>
+                <span class="badge">HTML5 / CSS3</span>
+                <span class="badge">SB Admin 2</span>
+                <span class="badge">Bcrypt (Cost 12)</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>🚀 Passo a Passo de Instalação</h2>
+            <p>Instruções para configurar e rodar o projeto em um ambiente local ou servidor (focado em Debian/Ubuntu Linux)[cite: 1].</p>
+
+            <div class="step-title">1. Instalação de Pré-requisitos</div>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <pre>sudo apt update
+sudo apt install -y php php-cli php-mbstring php-intl php-sqlite3 php-curl php-zip php-xml unzip git composer</pre>
+            </div>
+
+            <div class="step-title">2. Clonando o Repositório</div>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <pre>git clone https://github.com/vlademiro575/pdi.git sistema-pdi
+cd sistema-pdi</pre>
+            </div>
+
+            <div class="step-title">3. Instalando as Dependências e Configurando o Ambiente</div>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <pre>composer install
+cp env .env</pre>
+            </div>
+            <p>Edite o arquivo <code>.env</code> com as seguintes configurações:</p>
+            <div class="terminal">
+                <pre>CI_ENVIRONMENT = development
+
+database.default.DBDriver = SQLite3
+database.default.database = WRITEPATH . 'database/pdi.db'
+database.default.DBPrefix = ""</pre>
+            </div>
+
+            <div class="step-title">4. Permissões do Banco de Dados e Execução</div>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <pre>mkdir -p writable/database
+chmod -R 775 writable
+php spark serve --host 0.0.0.0 --port 8080</pre>
+            </div>
+            <p>Pronto! Basta acessar <strong>http://localhost:8080</strong> no seu navegador para começar a utilizar o Sistema PDI[cite: 1].</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>Projeto de código aberto. Devolvendo o tempo do pesquisador para a ciência.</p>
+    </footer>
+
+</body>
+</html>
