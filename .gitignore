@@ -1,11 +1,11 @@
-*/writable/debugbar/debugbar*.json
-!*/writable/debugbar/index.html
-*/writable/logs/log-*.php
-!*/writable/logs/index.html
-*/writable/cache/*
-*/writable/session/*
-!*/writable/session/index.html
-*/writable/uploads/*
-!*/writable/uploads/index.html
+./writable/debugbar/debugbar*.json
+!./writable/debugbar/index.html
+./writable/logs/log-*.php
+!./writable/logs/index.html
+./writable/cache/*
+./writable/session/*
+!./writable/session/index.html
+./writable/uploads/*
+!./writable/uploads/index.html
 
 /vendor/
