@@ -19,9 +19,18 @@ class BolsistaController extends BaseController
      */
     public function index()
     {
+        $termo = trim((string) $this->request->getGet('nome'));
+
+        $query = $this->bolsistaModel->orderBy('nome', 'ASC');
+
+        if (!empty($termo)) {
+            $query->like('nome', $termo);
+        }
+
         $data = [
             'titulo'    => 'Gerenciamento de Bolsistas',
-            'bolsistas' => $this->bolsistaModel->findAll()
+            'bolsistas' => $query->findAll(),
+            'termo'     => $termo
         ];
 
         return view('bolsistas/index', $data);
