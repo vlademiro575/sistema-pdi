@@ -19,9 +19,24 @@ class FundacaoController extends BaseController
      */
     public function index()
     {
+        $fundacoes = $this->fundacaoModel->findAll();
+
+        // Carrega o histórico de alterações ordenado decrescente por _atualizado_em
+        $db = \Config\Database::connect();
+        $historicosRaw = $db->table('fundacoes_historico')
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorFundacao = [];
+        foreach ($historicosRaw as $h) {
+            $historicosPorFundacao[$h['id_fundacao']][] = $h;
+        }
+
         $data = [
-            'titulo'    => 'Gerenciamento de Fundações',
-            'fundacoes' => $this->fundacaoModel->findAll()
+            'titulo'                => 'Gerenciamento de Fundações',
+            'fundacoes'             => $fundacoes,
+            'historicosPorFundacao' => $historicosPorFundacao
         ];
 
         return view('fundacoes/index', $data);
