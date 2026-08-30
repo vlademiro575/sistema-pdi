@@ -253,18 +253,9 @@ cd sistema-pdi</pre>
                 <div class="terminal-header">
                     <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
                 </div>
-                <pre>composer install
-cp env .env</pre>
+                <pre>composer install</pre>
             </div>
-            <p>Edite o arquivo <code>.env</code> com as seguintes configurações:</p>
-            <div class="terminal">
-                <pre>CI_ENVIRONMENT = development
-
-database.default.DBDriver = SQLite3
-database.default.database = WRITEPATH . 'database/pdi.db'
-database.default.DBPrefix = ""</pre>
-            </div>
-
+          
             <div class="step-title">4. Permissões do Banco de Dados e Execução</div>
             <div class="terminal">
                 <div class="terminal-header">
