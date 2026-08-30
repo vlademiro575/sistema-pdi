@@ -24,9 +24,41 @@ class ProjetoController extends BaseController
      */
     public function index()
     {
+        $projetos = $this->projetoModel->findAll();
+
+        $db = \Config\Database::connect();
+
+        // Professores para mapear os nomes
+        $professoresRaw = $db->table('professores')->get()->getResultArray();
+        $professoresMap = [];
+        foreach ($professoresRaw as $p) {
+            $professoresMap[$p['id_professor']] = $p['nome'];
+        }
+
+        // Fundações para mapear as siglas
+        $fundacoesRaw = $db->table('fundacoes')->get()->getResultArray();
+        $fundacoesMap = [];
+        foreach ($fundacoesRaw as $f) {
+            $fundacoesMap[$f['id_fundacao']] = $f['sigla'] . ' - ' . $f['nome'];
+        }
+
+        // Histórico de alterações ordenado decrescente por _atualizado_em
+        $historicosRaw = $db->table('projetos_historico')
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorProjeto = [];
+        foreach ($historicosRaw as $h) {
+            $historicosPorProjeto[$h['id_projeto']][] = $h;
+        }
+
         $data = [
-            'titulo'   => 'Gerenciamento de Projetos',
-            'projetos' => $this->projetoModel->findAll()
+            'titulo'               => 'Gerenciamento de Projetos',
+            'projetos'             => $projetos,
+            'professoresMap'       => $professoresMap,
+            'fundacoesMap'         => $fundacoesMap,
+            'historicosPorProjeto' => $historicosPorProjeto
         ];
 
         return view('projetos/index', $data);

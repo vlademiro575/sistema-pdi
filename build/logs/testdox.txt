@@ -27,6 +27,9 @@ Professor Historico (Tests\Unit\ProfessorHistorico)
 Projeto Bolsista (Tests\Unit\ProjetoBolsista)
  [x] Vinculo e alteracao de bolsista no projeto
 
+Projeto Historico (Tests\Unit\ProjetoHistorico)
+ [x] Historico projetos registra alteracoes corretamente
+
 Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
  [x] Parse nfe padrao com nfe proc
  [x] Parse nfe sem wrapper nfe proc
