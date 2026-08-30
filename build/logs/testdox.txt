@@ -18,6 +18,9 @@ Health
  [x] Is defined app path
  [x] Base url has been set
 
+Professor Historico (Tests\Unit\ProfessorHistorico)
+ [x] Historico professores registra alteracoes corretamente
+
 Projeto Bolsista (Tests\Unit\ProjetoBolsista)
  [x] Vinculo e alteracao de bolsista no projeto
 

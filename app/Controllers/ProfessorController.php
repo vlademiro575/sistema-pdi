@@ -27,10 +27,25 @@ class ProfessorController extends BaseController
             $query->like('nome', $termo);
         }
 
+        $professores = $query->findAll();
+
+        // Carrega o histórico de alterações ordenado decrescente por _atualizado_em
+        $db = \Config\Database::connect();
+        $historicosRaw = $db->table('professores_historico')
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorProfessor = [];
+        foreach ($historicosRaw as $h) {
+            $historicosPorProfessor[$h['id_professor']][] = $h;
+        }
+
         $data = [
-            'titulo'      => 'Gerenciamento de Professores',
-            'professores' => $query->findAll(),
-            'termo'       => $termo
+            'titulo'                 => 'Gerenciamento de Professores',
+            'professores'            => $professores,
+            'historicosPorProfessor' => $historicosPorProfessor,
+            'termo'                  => $termo
         ];
 
         return view('professores/index', $data);
