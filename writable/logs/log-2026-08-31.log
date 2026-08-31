@@ -1,0 +1,24 @@
+DEBUG - 2026-08-31 01:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:35:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:35:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:39:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-08-31 01:40:42 --> FOREIGN KEY constraint failed
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2865): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(443): CodeIgniter\Database\BaseBuilder->delete()
+ 6 SYSTEMPATH/BaseModel.php(1207): CodeIgniter\Model->doDelete()
+ 7 ROOTPATH/tests/unit/DespesaHistoricoTest.php(120): CodeIgniter\BaseModel->delete()
+ 8 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(1548): Tests\Unit\DespesaHistoricoTest->testHistoricoDespesasRegistraAlteracoesCorretamente()
+ 9 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(686): PHPUnit\Framework\TestCase->runTest()
+10 VENDORPATH/phpunit/phpunit/src/Framework/TestRunner.php(106): PHPUnit\Framework\TestCase->runBare()
+11 VENDORPATH/phpunit/phpunit/src/Framework/TestCase.php(516): PHPUnit\Framework\TestRunner->run()
+12 VENDORPATH/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+13 VENDORPATH/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+14 VENDORPATH/phpunit/phpunit/src/TextUI/Application.php(204): PHPUnit\TextUI\TestRunner->run()
+15 VENDORPATH/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+16 VENDORPATH/bin/phpunit(122): include('/var/www/sistema-pdi/vendor/phpunit/phpunit/phpunit')

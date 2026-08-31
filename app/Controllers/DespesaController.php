@@ -24,14 +24,43 @@ class DespesaController extends BaseController
         $this->anexoModel   = new AnexoModel();
     }
 
-    /**
-     * Listagem Geral de Despesas
-     */
     public function index()
     {
+        $despesas = $this->despesaModel->getDespesasComRelacionamentos();
+
+        $db = \Config\Database::connect();
+
+        // Mapeia rubricas para visualização histórica
+        $rubricasRaw = $db->table('rubricas')->get()->getResultArray();
+        $rubricasMap = [];
+        foreach ($rubricasRaw as $r) {
+            $rubricasMap[$r['id_rubrica']] = $r['nome'] . ' (' . $r['tipo'] . ')';
+        }
+
+        // Mapeia projetos para visualização histórica
+        $projetosRaw = $db->table('projetos')->get()->getResultArray();
+        $projetosMap = [];
+        foreach ($projetosRaw as $p) {
+            $projetosMap[$p['id_projeto']] = $p['codigo_projeto_fundacao'] . ' - ' . $p['titulo'];
+        }
+
+        // Histórico de alterações de despesas ordenado decrescente por _atualizado_em
+        $historicosRaw = $db->table('despesas_historico')
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorDespesa = [];
+        foreach ($historicosRaw as $h) {
+            $historicosPorDespesa[$h['id_despesa']][] = $h;
+        }
+
         $data = [
-            'titulo'   => 'Gestão de Despesas',
-            'despesas' => $this->despesaModel->getDespesasComRelacionamentos()
+            'titulo'               => 'Gestão de Despesas',
+            'despesas'             => $despesas,
+            'rubricasMap'          => $rubricasMap,
+            'projetosMap'          => $projetosMap,
+            'historicosPorDespesa' => $historicosPorDespesa
         ];
 
         return view('despesas/index', $data);

@@ -7,6 +7,9 @@ Auditoria Consistencia (Tests\Unit\AuditoriaConsistencia)
 Bolsista Model (App\Models\BolsistaModel)
  [x] Verifica se auditoria criado por regista o utilizador da sessao
 
+Despesa Historico (Tests\Unit\DespesaHistorico)
+ [x] Historico despesas registra alteracoes corretamente
+
 Example Database
  [x] Model find all
  [x] Soft delete leaves row
