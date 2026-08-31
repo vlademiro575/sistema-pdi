@@ -35,7 +35,7 @@
                         <?php if (!empty($movimentacoes) && is_array($movimentacoes)): ?>
                             <?php foreach ($movimentacoes as $mov): ?>
                                 <tr>
-                                    <td><?= date('d/m/Y H:i', strtotime($mov['_criado_em'])) ?></td>
+                                    <td><?= formatar_data_hora($mov['_criado_em']) ?></td>
                                     <td>
                                         <?php 
                                             $badge = match($mov['tipo']) {

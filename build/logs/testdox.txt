@@ -7,6 +7,12 @@ Auditoria Consistencia (Tests\Unit\AuditoriaConsistencia)
 Bolsista Model (App\Models\BolsistaModel)
  [x] Verifica se auditoria criado por regista o utilizador da sessao
 
+Data Helper (Tests\Unit\DataHelper)
+ [x] Formatar data valida
+ [x] Formatar data vazia ou invalida
+ [x] Formatar data hora
+ [x] Converter data iso
+
 Despesa Historico (Tests\Unit\DespesaHistorico)
  [x] Historico despesas registra alteracoes corretamente
 

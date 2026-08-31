@@ -138,7 +138,7 @@
                                             <small class="text-muted font-weight-bold d-block">ÚLTIMA ALTERAÇÃO</small>
                                             <?php if (!empty($b['_atualizado_em'])): ?>
                                                 <span class="text-dark font-weight-bold">
-                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= date('d/m/Y \à\s H:i:s', strtotime($b['_atualizado_em'])) ?>
+                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= formatar_data_hora($b['_atualizado_em']) ?>
                                                     <br><small class="text-muted"><i class="fas fa-user-edit mr-1"></i>Por: <?= esc($b['_atualizado_por'] ?? 'sistema') ?></small>
                                                 </span>
                                             <?php else: ?>
@@ -182,7 +182,7 @@
                                                         default  => 'badge-info'
                                                     };
                                                     $dataOp = $h['_atualizado_em'] ?? $h['_deletado_em'] ?? $h['_criado_em'] ?? null;
-                                                    $dataOpFormatada = $dataOp ? date('d/m/Y \à\s H:i:s', strtotime($dataOp)) : '-';
+                                                    $dataOpFormatada = formatar_data_hora($dataOp);
                                                     $usuarioOp = $h['_atualizado_por'] ?? $h['_deletado_por'] ?? $h['_criado_por'] ?? 'sistema';
                                                 ?>
                                                 <tr>

@@ -42,7 +42,7 @@
                         <?php if (!empty($despesas) && is_array($despesas)): ?>
                             <?php foreach ($despesas as $d): ?>
                                 <tr>
-                                    <td><?= date('d/m/Y', strtotime($d['data_emissao'])) ?></td>
+                                    <td><?= formatar_data($d['data_emissao']) ?></td>
                                     <td>
                                         <span class="badge badge-dark"><?= esc($d['codigo_projeto_fundacao'] ?? 'Proj #' . $d['id_projeto']) ?></span><br>
                                         <small class="text-muted"><i class="fas fa-wallet mr-1"></i><?= esc($d['rubrica_nome'] ?? 'Rubrica #' . $d['id_rubrica']) ?></small>
@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <small class="text-muted font-weight-bold d-block">DATA EMISSÃO</small>
-                                            <span class="text-dark"><?= date('d/m/Y', strtotime($d['data_emissao'])) ?></span>
+                                            <span class="text-dark"><?= formatar_data($d['data_emissao']) ?></span>
                                         </div>
                                         <div class="col-md-3 mb-2">
                                             <small class="text-muted font-weight-bold d-block">VALOR TOTAL</small>
@@ -201,7 +201,7 @@
                                             <small class="text-muted font-weight-bold d-block">ÚLTIMA ALTERAÇÃO</small>
                                             <?php if (!empty($d['_atualizado_em'])): ?>
                                                 <span class="text-dark font-weight-bold">
-                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= date('d/m/Y \à\s H:i:s', strtotime($d['_atualizado_em'])) ?>
+                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= formatar_data_hora($d['_atualizado_em']) ?>
                                                     <small class="text-muted ml-2"><i class="fas fa-user-edit mr-1"></i>Por: <?= esc($d['_atualizado_por'] ?? 'sistema') ?></small>
                                                 </span>
                                             <?php else: ?>
@@ -251,10 +251,10 @@
                                                         default  => 'badge-info'
                                                     };
                                                     $dataOp = $h['_atualizado_em'] ?? $h['_deletado_em'] ?? $h['_criado_em'] ?? null;
-                                                    $dataOpFormatada = $dataOp ? date('d/m/Y \à\s H:i:s', strtotime($dataOp)) : '-';
+                                                    $dataOpFormatada = formatar_data_hora($dataOp);
                                                     $usuarioOp = $h['_atualizado_por'] ?? $h['_deletado_por'] ?? $h['_criado_por'] ?? 'sistema';
                                                     $valorHist = isset($h['valor_total']) ? ('R$ ' . number_format($h['valor_total'], 2, ',', '.')) : '-';
-                                                    $dataEmissaoHist = $h['data_emissao'] ? date('d/m/Y', strtotime($h['data_emissao'])) : '-';
+                                                    $dataEmissaoHist = formatar_data($h['data_emissao'] ?? null);
                                                     $projHist = $projetosMap[$h['id_projeto']] ?? ('Projeto ID #' . ($h['id_projeto'] ?? '-'));
                                                     $rubrHist = $rubricasMap[$h['id_rubrica']] ?? ('Rubrica ID #' . ($h['id_rubrica'] ?? '-'));
                                                 ?>

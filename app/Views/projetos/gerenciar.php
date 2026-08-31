@@ -57,7 +57,7 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                 <div class="col-md-4 mb-2">
                     <strong class="text-gray-700">Vigência:</strong><br>
                     <span class="text-dark">
-                        <?= date('d/m/Y', strtotime($projeto['data_inicio'])) ?> até <?= date('d/m/Y', strtotime($projeto['data_fim'])) ?>
+                        <?= formatar_data($projeto['data_inicio']) ?> até <?= formatar_data($projeto['data_fim']) ?>
                     </span>
                 </div>
                 <div class="col-md-4 mb-2">
@@ -213,8 +213,8 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <?= date('d/m/Y', strtotime($membro['data_inicio'])) ?> até 
-                                        <?= $membro['data_fim'] ? date('d/m/Y', strtotime($membro['data_fim'])) : 'Indefinido' ?>
+                                        <?= formatar_data($membro['data_inicio']) ?> até 
+                                        <?= formatar_data($membro['data_fim'], 'Indefinido') ?>
                                     </td>
                                     <td class="text-right text-success font-weight-bold">
                                         R$ <?= number_format($membro['valor_bolsa'], 2, ',', '.') ?>
@@ -551,7 +551,7 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                                             <small class="text-muted font-weight-bold d-block">ÚLTIMA ALTERAÇÃO</small>
                                             <?php if (!empty($rub['_atualizado_em'])): ?>
                                                 <span class="text-dark font-weight-bold">
-                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= date('d/m/Y \à\s H:i:s', strtotime($rub['_atualizado_em'])) ?>
+                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= formatar_data_hora($rub['_atualizado_em']) ?>
                                                     <small class="text-muted ml-2"><i class="fas fa-user-edit mr-1"></i>Por: <?= esc($rub['_atualizado_por'] ?? 'sistema') ?></small>
                                                 </span>
                                             <?php else: ?>
@@ -595,7 +595,7 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                                                         default  => 'badge-info'
                                                     };
                                                     $dataOp = $h['_atualizado_em'] ?? $h['_deletado_em'] ?? $h['_criado_em'] ?? null;
-                                                    $dataOpFormatada = $dataOp ? date('d/m/Y \à\s H:i:s', strtotime($dataOp)) : '-';
+                                                    $dataOpFormatada = formatar_data_hora($dataOp);
                                                     $usuarioOp = $h['_atualizado_por'] ?? $h['_deletado_por'] ?? $h['_criado_por'] ?? 'sistema';
                                                     $valorAlocHist = isset($h['valor_alocado']) ? ('R$ ' . number_format($h['valor_alocado'], 2, ',', '.')) : '-';
                                                     $saldoDispHist = isset($h['saldo_disponivel']) ? ('R$ ' . number_format($h['saldo_disponivel'], 2, ',', '.')) : '-';
@@ -674,29 +674,29 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                                             <span class="text-success font-weight-bold">R$ <?= number_format($membro['valor_bolsa'], 2, ',', '.') ?></span>
                                         </div>
                                         <div class="col-md-3 mb-2">
-                                            <small class="text-muted font-weight-bold d-block">VIGÊNCIA DO VÍNCULO</small>
-                                            <span class="text-dark">
-                                                <?= date('d/m/Y', strtotime($membro['data_inicio'])) ?> até 
-                                                <?= $membro['data_fim'] ? date('d/m/Y', strtotime($membro['data_fim'])) : 'Indefinido' ?>
-                                            </span>
-                                        </div>
-                                        <div class="col-md-2 mb-2">
-                                            <small class="text-muted font-weight-bold d-block">STATUS</small>
-                                            <span class="badge <?= $badgeMembroAtual ?>"><?= esc($membro['status']) ?></span>
-                                        </div>
-                                        <div class="col-md-12 mb-2 mt-1">
-                                            <small class="text-muted font-weight-bold d-block">ÚLTIMA ALTERAÇÃO</small>
-                                            <?php if (!empty($membro['_atualizado_em'])): ?>
-                                                <span class="text-dark font-weight-bold">
-                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= date('d/m/Y \à\s H:i:s', strtotime($membro['_atualizado_em'])) ?>
-                                                    <small class="text-muted ml-2"><i class="fas fa-user-edit mr-1"></i>Por: <?= esc($membro['_atualizado_por'] ?? 'sistema') ?></small>
-                                                </span>
-                                            <?php else: ?>
-                                                <span class="text-muted">Nenhuma alteração realizada</span>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
+                                             <small class="text-muted font-weight-bold d-block">VIGÊNCIA DO VÍNCULO</small>
+                                             <span class="text-dark">
+                                                 <?= formatar_data($membro['data_inicio']) ?> até 
+                                                 <?= formatar_data($membro['data_fim'], 'Indefinido') ?>
+                                             </span>
+                                         </div>
+                                         <div class="col-md-2 mb-2">
+                                             <small class="text-muted font-weight-bold d-block">STATUS</small>
+                                             <span class="badge <?= $badgeMembroAtual ?>"><?= esc($membro['status']) ?></span>
+                                         </div>
+                                         <div class="col-md-12 mb-2 mt-1">
+                                             <small class="text-muted font-weight-bold d-block">ÚLTIMA ALTERAÇÃO</small>
+                                             <?php if (!empty($membro['_atualizado_em'])): ?>
+                                                 <span class="text-dark font-weight-bold">
+                                                     <i class="fas fa-clock mr-1 text-muted"></i><?= formatar_data_hora($membro['_atualizado_em']) ?>
+                                                     <small class="text-muted ml-2"><i class="fas fa-user-edit mr-1"></i>Por: <?= esc($membro['_atualizado_por'] ?? 'sistema') ?></small>
+                                                 </span>
+                                             <?php else: ?>
+                                                 <span class="text-muted">Nenhuma alteração realizada</span>
+                                             <?php endif; ?>
+                                         </div>
+                                     </div>
+                                 </div>
                             </div>
 
                             <!-- SEÇÃO: Versões Anteriores (Shadow Table projetos_bolsistas_historico ordenada por _atualizado_em DESC) -->
@@ -732,10 +732,10 @@ Esta tela atua como o painel central do projeto, renderizando os dados mestres n
                                                         default  => 'badge-info'
                                                     };
                                                     $dataOp = $h['_atualizado_em'] ?? $h['_deletado_em'] ?? $h['_criado_em'] ?? null;
-                                                    $dataOpFormatada = $dataOp ? date('d/m/Y \à\s H:i:s', strtotime($dataOp)) : '-';
+                                                    $dataOpFormatada = formatar_data_hora($dataOp);
                                                     $usuarioOp = $h['_atualizado_por'] ?? $h['_deletado_por'] ?? $h['_criado_por'] ?? 'sistema';
                                                     $valorBolsaHist = isset($h['valor_bolsa']) ? ('R$ ' . number_format($h['valor_bolsa'], 2, ',', '.')) : '-';
-                                                    $vigenciaHist = ($h['data_inicio'] ? date('d/m/Y', strtotime($h['data_inicio'])) : '-') . ' até ' . ($h['data_fim'] ? date('d/m/Y', strtotime($h['data_fim'])) : 'Indefinido');
+                                                    $vigenciaHist = ($h['data_inicio'] ? formatar_data($h['data_inicio']) : '-') . ' até ' . formatar_data($h['data_fim'], 'Indefinido');
                                                     $nomeBolsistaHist = $bolsistasMap[$h['id_bolsista']] ?? ('Bolsista ID #' . ($h['id_bolsista'] ?? '-'));
                                                 ?>
                                                 <tr>

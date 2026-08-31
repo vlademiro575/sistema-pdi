@@ -60,8 +60,8 @@
                                         <?= number_format($proj['orcamento_total'], 2, ',', '.') ?>
                                     </td>
                                     <td class="text-center text-sm">
-                                        <?= date('d/m/Y', strtotime($proj['data_inicio'])) ?> a<br>
-                                        <?= date('d/m/Y', strtotime($proj['data_fim'])) ?>
+                                        <?= formatar_data($proj['data_inicio']) ?> a<br>
+                                        <?= formatar_data($proj['data_fim']) ?>
                                     </td>
                                     <td class="text-center">
                                         <!-- O Botão Principal do Mestre-Detalhe -->
@@ -154,13 +154,13 @@
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <small class="text-muted font-weight-bold d-block">VIGÊNCIA</small>
-                                            <span class="text-dark"><i class="fas fa-calendar-alt mr-1 text-muted"></i><?= date('d/m/Y', strtotime($proj['data_inicio'])) ?> a <?= date('d/m/Y', strtotime($proj['data_fim'])) ?></span>
+                                            <span class="text-dark"><i class="fas fa-calendar-alt mr-1 text-muted"></i><?= formatar_data($proj['data_inicio']) ?> a <?= formatar_data($proj['data_fim']) ?></span>
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <small class="text-muted font-weight-bold d-block">ÚLTIMA ALTERAÇÃO</small>
                                             <?php if (!empty($proj['_atualizado_em'])): ?>
                                                 <span class="text-dark font-weight-bold">
-                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= date('d/m/Y \à\s H:i:s', strtotime($proj['_atualizado_em'])) ?>
+                                                    <i class="fas fa-clock mr-1 text-muted"></i><?= formatar_data_hora($proj['_atualizado_em']) ?>
                                                     <small class="text-muted ml-2"><i class="fas fa-user-edit mr-1"></i>Por: <?= esc($proj['_atualizado_por'] ?? 'sistema') ?></small>
                                                 </span>
                                             <?php else: ?>
@@ -204,12 +204,12 @@
                                                         default  => 'badge-info'
                                                     };
                                                     $dataOp = $h['_atualizado_em'] ?? $h['_deletado_em'] ?? $h['_criado_em'] ?? null;
-                                                    $dataOpFormatada = $dataOp ? date('d/m/Y \à\s H:i:s', strtotime($dataOp)) : '-';
+                                                    $dataOpFormatada = formatar_data_hora($dataOp);
                                                     $usuarioOp = $h['_atualizado_por'] ?? $h['_deletado_por'] ?? $h['_criado_por'] ?? 'sistema';
                                                     $coordHist = $professoresMap[$h['id_professor']] ?? ('Professor ID #' . ($h['id_professor'] ?? '-'));
                                                     $fundHist  = $fundacoesMap[$h['id_fundacao']] ?? ('Fundação ID #' . ($h['id_fundacao'] ?? '-'));
                                                     $orcamentoHist = isset($h['orcamento_total']) ? ('R$ ' . number_format($h['orcamento_total'], 2, ',', '.')) : '-';
-                                                    $vigenciaHist = ($h['data_inicio'] && $h['data_fim']) ? (date('d/m/Y', strtotime($h['data_inicio'])) . ' a ' . date('d/m/Y', strtotime($h['data_fim']))) : '-';
+                                                    $vigenciaHist = ($h['data_inicio'] && $h['data_fim']) ? (formatar_data($h['data_inicio']) . ' a ' . formatar_data($h['data_fim'])) : '-';
                                                 ?>
                                                 <tr>
                                                     <td class="text-center font-weight-bold text-muted">#<?= $h['id_historico'] ?></td>

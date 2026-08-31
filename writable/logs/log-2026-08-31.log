@@ -484,3 +484,13 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 17 VENDORPATH/phpunit/phpunit/src/TextUI/Application.php(204): PHPUnit\TextUI\TestRunner->run()
 18 VENDORPATH/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
 19 VENDORPATH/bin/phpunit(122): include('/var/www/sistema-pdi/vendor/phpunit/phpunit/phpunit')
+DEBUG - 2026-08-31 22:04:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:04:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 22:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
