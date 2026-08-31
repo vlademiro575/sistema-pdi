@@ -232,14 +232,35 @@ class ProjetoController extends BaseController
             $historicosPorRubrica[$h['id_rubrica']][] = $h;
         }
 
+        // Histórico de alterações de vínculos de bolsistas deste projeto ordenado decrescente por _atualizado_em
+        $historicosBolsistasRaw = $db->table('projetos_bolsistas_historico')
+            ->where('id_projeto', $id)
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorVinculoBolsista = [];
+        foreach ($historicosBolsistasRaw as $h) {
+            $historicosPorVinculoBolsista[$h['id_projeto_bolsista']][] = $h;
+        }
+
+        // Mapeia nomes dos bolsistas para o histórico
+        $bolsistasRaw = $db->table('bolsistas')->get()->getResultArray();
+        $bolsistasMap = [];
+        foreach ($bolsistasRaw as $b) {
+            $bolsistasMap[$b['id_bolsista']] = $b['nome'];
+        }
+
         $data = [
-            'titulo'                => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
-            'projeto'               => $projeto,
-            'rubricas'              => $rubricas,
-            'historicosPorRubrica'  => $historicosPorRubrica,
-            'equipe'                => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
-            'bolsistas_disponiveis' => $bolsistaModel->findAll(), // Traz todos os bolsistas para o <select>
-            'abaAtiva'              => $abaAtiva
+            'titulo'                       => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
+            'projeto'                      => $projeto,
+            'rubricas'                     => $rubricas,
+            'historicosPorRubrica'         => $historicosPorRubrica,
+            'equipe'                       => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
+            'historicosPorVinculoBolsista' => $historicosPorVinculoBolsista,
+            'bolsistasMap'                 => $bolsistasMap,
+            'bolsistas_disponiveis'        => $bolsistaModel->findAll(), // Traz todos os bolsistas para o <select>
+            'abaAtiva'                     => $abaAtiva
         ];
 
         return view('projetos/gerenciar', $data);
