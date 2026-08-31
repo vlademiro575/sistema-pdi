@@ -74,7 +74,7 @@ class ProjetoController extends BaseController
 
         $data = [
             'titulo'      => 'Novo Projeto',
-            'professores' => $professorModel->findAll(),
+            'professores' => $professorModel->orderBy('nome', 'ASC')->findAll(),
             'fundacoes'   => $fundacaoModel->findAll()
         ];
 
@@ -138,7 +138,7 @@ class ProjetoController extends BaseController
         $data = [
             'titulo'      => 'Editar Projeto',
             'projeto'     => $projeto,
-            'professores' => $professorModel->findAll(),
+            'professores' => $professorModel->orderBy('nome', 'ASC')->findAll(),
             'fundacoes'   => $fundacaoModel->findAll()
         ];
 
