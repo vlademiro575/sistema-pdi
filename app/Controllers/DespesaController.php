@@ -81,7 +81,7 @@ class DespesaController extends BaseController
         $rubricas = [];
 
         if ($idProjetoOld) {
-            $rubricas = $this->rubricaModel->where('id_projeto', $idProjetoOld)->findAll();
+            $rubricas = $this->rubricaModel->where('id_projeto', $idProjetoOld)->orderBy('nome', 'ASC')->findAll();
         }
 
         /* Fim da correção */
@@ -238,7 +238,7 @@ class DespesaController extends BaseController
             'titulo'   => 'Editar Despesa #' . $despesa['id_despesa'],
             'despesa'  => $despesa,
             'projetos' => $this->projetoModel->orderBy('titulo', 'ASC')->findAll(),
-            'rubricas' => $this->rubricaModel->where('id_projeto', $despesa['id_projeto'])->findAll(),
+            'rubricas' => $this->rubricaModel->where('id_projeto', $despesa['id_projeto'])->orderBy('nome', 'ASC')->findAll(),
             'anexos'   => $this->anexoModel->where('id_despesa', $id)->findAll()
         ];
 
@@ -421,7 +421,7 @@ class DespesaController extends BaseController
      */
     public function getRubricasPorProjeto($idProjeto)
     {
-        $rubricas = $this->rubricaModel->where('id_projeto', $idProjeto)->findAll();
+        $rubricas = $this->rubricaModel->where('id_projeto', $idProjeto)->orderBy('nome', 'ASC')->findAll();
         return $this->response->setJSON($rubricas);
     }
 }
