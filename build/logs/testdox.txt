@@ -33,6 +33,9 @@ Projeto Bolsista (Tests\Unit\ProjetoBolsista)
 Projeto Historico (Tests\Unit\ProjetoHistorico)
  [x] Historico projetos registra alteracoes corretamente
 
+Rubrica Historico (Tests\Unit\RubricaHistorico)
+ [x] Historico rubricas registra alteracoes corretamente
+
 Sefaz Xml Parser (Tests\Unit\SefazXmlParser)
  [x] Parse nfe padrao com nfe proc
  [x] Parse nfe sem wrapper nfe proc

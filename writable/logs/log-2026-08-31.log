@@ -22,3 +22,9 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 14 VENDORPATH/phpunit/phpunit/src/TextUI/Application.php(204): PHPUnit\TextUI\TestRunner->run()
 15 VENDORPATH/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
 16 VENDORPATH/bin/phpunit(122): include('/var/www/sistema-pdi/vendor/phpunit/phpunit/phpunit')
+DEBUG - 2026-08-31 01:43:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:45:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:55:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 01:57:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-08-31 02:00:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

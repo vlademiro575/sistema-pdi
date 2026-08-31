@@ -216,14 +216,30 @@ class ProjetoController extends BaseController
         $bolsistaModel = new BolsistaModel();
 
         $abaAtiva = $this->request->getGet('aba') ?? session()->getFlashdata('aba') ?? 'rubricas';
+        $rubricas = $rubricaModel->where('id_projeto', $id)->findAll();
+
+        $db = \Config\Database::connect();
+
+        // Histórico de alterações de rubricas deste projeto ordenado decrescente por _atualizado_em
+        $historicosRubricasRaw = $db->table('rubricas_historico')
+            ->where('id_projeto', $id)
+            ->orderBy('_atualizado_em', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $historicosPorRubrica = [];
+        foreach ($historicosRubricasRaw as $h) {
+            $historicosPorRubrica[$h['id_rubrica']][] = $h;
+        }
 
         $data = [
-            'titulo'               => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
-            'projeto'              => $projeto,
-            'rubricas'             => $rubricaModel->where('id_projeto', $id)->findAll(),
-            'equipe'               => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
-            'bolsistas_disponiveis'=> $bolsistaModel->findAll(), // Traz todos os bolsistas para o <select>
-            'abaAtiva'             => $abaAtiva
+            'titulo'                => 'Painel do Projeto: ' . $projeto['codigo_projeto_fundacao'],
+            'projeto'               => $projeto,
+            'rubricas'              => $rubricas,
+            'historicosPorRubrica'  => $historicosPorRubrica,
+            'equipe'                => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
+            'bolsistas_disponiveis' => $bolsistaModel->findAll(), // Traz todos os bolsistas para o <select>
+            'abaAtiva'              => $abaAtiva
         ];
 
         return view('projetos/gerenciar', $data);
