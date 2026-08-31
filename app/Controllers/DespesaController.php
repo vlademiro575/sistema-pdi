@@ -88,7 +88,7 @@ class DespesaController extends BaseController
 
         $data = [
             'titulo'   => 'Lançamento de Nova Despesa',
-            'projetos' => $this->projetoModel->findAll(),
+            'projetos' => $this->projetoModel->orderBy('titulo', 'ASC')->findAll(),
             'rubricas' => $rubricas
         ];
 
@@ -134,7 +134,7 @@ class DespesaController extends BaseController
             $data = [
                 'titulo'        => 'Lançamento de Nova Despesa (via XML SEFAZ)',
                 'despesa'       => $dadosExtraidos,
-                'projetos'      => $this->projetoModel->findAll(),
+                'projetos'      => $this->projetoModel->orderBy('titulo', 'ASC')->findAll(),
                 'rubricas'      => [],
                 'importado_xml' => true
             ];
@@ -237,7 +237,7 @@ class DespesaController extends BaseController
         $data = [
             'titulo'   => 'Editar Despesa #' . $despesa['id_despesa'],
             'despesa'  => $despesa,
-            'projetos' => $this->projetoModel->findAll(),
+            'projetos' => $this->projetoModel->orderBy('titulo', 'ASC')->findAll(),
             'rubricas' => $this->rubricaModel->where('id_projeto', $despesa['id_projeto'])->findAll(),
             'anexos'   => $this->anexoModel->where('id_despesa', $id)->findAll()
         ];
