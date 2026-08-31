@@ -259,7 +259,7 @@ class ProjetoController extends BaseController
             'equipe'                       => $projetoBolsistaModel->getBolsistasPorProjeto((int) $id),
             'historicosPorVinculoBolsista' => $historicosPorVinculoBolsista,
             'bolsistasMap'                 => $bolsistasMap,
-            'bolsistas_disponiveis'        => $bolsistaModel->findAll(), // Traz todos os bolsistas para o <select>
+            'bolsistas_disponiveis'        => $bolsistaModel->orderBy('nome', 'ASC')->findAll(), // Traz todos os bolsistas ordenados para o <select>
             'abaAtiva'                     => $abaAtiva
         ];
 
