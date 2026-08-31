@@ -3,14 +3,10 @@
 namespace App\Models;
 
 use CodeIgniter\Test\CIUnitTestCase;
-use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Services;
 
 class BolsistaModelTest extends CIUnitTestCase
 {
-    // Habilita as transações de teste para limpar a base de dados no fim
-    use DatabaseTestTrait; 
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -52,9 +48,11 @@ class BolsistaModelTest extends CIUnitTestCase
 
         // 4. A Prova Final: Verificar na base de dados
         // Confirmamos se o registo inserido tem exatamente o login na coluna _criado_por
-        $this->seeInDatabase('bolsistas', [
-            'id_bolsista' => $id,
-            '_criado_por' => 'admin.teste' // A magia acontece aqui!
-        ]);
+        $bolsista = $model->find($id);
+        $this->assertNotNull($bolsista);
+        $this->assertEquals('admin.teste', $bolsista['_criado_por']);
+
+        // Limpeza
+        $model->delete($id);
     }
 }

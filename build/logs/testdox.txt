@@ -24,6 +24,10 @@ Health
  [x] Is defined app path
  [x] Base url has been set
 
+Migrations (Tests\Unit\Migrations)
+ [x] Todas as tabelas e historicos existem
+ [x] Triggers de auditoria existem
+
 Professor Historico (Tests\Unit\ProfessorHistorico)
  [x] Historico professores registra alteracoes corretamente
 

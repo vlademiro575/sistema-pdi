@@ -12,7 +12,18 @@ final class ExampleDatabaseTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
 
+    protected $migrate = false;
+    protected $refresh = false;
     protected $seed = ExampleSeeder::class;
+
+    protected function setUp(): void
+    {
+        $db = \Config\Database::connect();
+        if ($db->tableExists('factories')) {
+            $db->table('factories')->emptyTable();
+        }
+        parent::setUp();
+    }
 
     public function testModelFindAll(): void
     {
