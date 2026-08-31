@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="/var/www/sistema-pdi/phpunit.dist.xml" tests="33" assertions="166" errors="0" failures="0" skipped="0" time="8.462379">
-    <testsuite name="App" tests="33" assertions="166" errors="0" failures="0" skipped="0" time="8.462379">
-      <testsuite name="App\Models\BolsistaModelTest" file="/var/www/sistema-pdi/tests/app/Models/BolsistaModelTest.php" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.154668">
-        <testcase name="testVerificaSeAuditoriaCriadoPorRegistaOUtilizadorDaSessao" file="/var/www/sistema-pdi/tests/app/Models/BolsistaModelTest.php" line="30" class="App\Models\BolsistaModelTest" classname="App.Models.BolsistaModelTest" assertions="3" time="0.154668"/>
+  <testsuite name="/var/www/sistema-pdi/phpunit.dist.xml" tests="34" assertions="170" errors="0" failures="0" skipped="0" time="8.468863">
+    <testsuite name="App" tests="34" assertions="170" errors="0" failures="0" skipped="0" time="8.468863">
+      <testsuite name="App\Models\BolsistaModelTest" file="/var/www/sistema-pdi/tests/app/Models/BolsistaModelTest.php" tests="1" assertions="3" errors="0" failures="0" skipped="0" time="0.175048">
+        <testcase name="testVerificaSeAuditoriaCriadoPorRegistaOUtilizadorDaSessao" file="/var/www/sistema-pdi/tests/app/Models/BolsistaModelTest.php" line="30" class="App\Models\BolsistaModelTest" classname="App.Models.BolsistaModelTest" assertions="3" time="0.175048"/>
       </testsuite>
-      <testsuite name="ExampleDatabaseTest" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="0.421578">
-        <testcase name="testModelFindAll" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" line="28" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" assertions="1" time="0.179566"/>
-        <testcase name="testSoftDeleteLeavesRow" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" line="39" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" assertions="2" time="0.242011"/>
+      <testsuite name="ExampleDatabaseTest" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="0.469427">
+        <testcase name="testModelFindAll" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" line="28" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" assertions="1" time="0.203149"/>
+        <testcase name="testSoftDeleteLeavesRow" file="/var/www/sistema-pdi/tests/database/ExampleDatabaseTest.php" line="39" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" assertions="2" time="0.266278"/>
       </testsuite>
-      <testsuite name="ExampleSessionTest" file="/var/www/sistema-pdi/tests/session/ExampleSessionTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.005259">
-        <testcase name="testSessionSimple" file="/var/www/sistema-pdi/tests/session/ExampleSessionTest.php" line="10" class="ExampleSessionTest" classname="ExampleSessionTest" assertions="1" time="0.005259"/>
+      <testsuite name="ExampleSessionTest" file="/var/www/sistema-pdi/tests/session/ExampleSessionTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002860">
+        <testcase name="testSessionSimple" file="/var/www/sistema-pdi/tests/session/ExampleSessionTest.php" line="10" class="ExampleSessionTest" classname="ExampleSessionTest" assertions="1" time="0.002860"/>
       </testsuite>
-      <testsuite name="Tests\Unit\AuditoriaConsistenciaTest" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" tests="4" assertions="13" errors="0" failures="0" skipped="0" time="1.566142">
-        <testcase name="testDetectaDiscrepanciaOrcamentoVersusRubricas" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="61" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="4" time="0.377480"/>
-        <testcase name="testDetectaDespesaForaDaVigencia" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="108" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="2" time="0.541309"/>
-        <testcase name="testDetectaFundacaoInexistenteNoProjeto" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="165" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="3" time="0.125037"/>
-        <testcase name="testDetectaBolsistaCadastradoMaisDeUmaVezNoMesmoProjeto" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="203" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="4" time="0.522317"/>
+      <testsuite name="Tests\Unit\AuditoriaConsistenciaTest" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" tests="4" assertions="13" errors="0" failures="0" skipped="0" time="1.545249">
+        <testcase name="testDetectaDiscrepanciaOrcamentoVersusRubricas" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="61" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="4" time="0.281581"/>
+        <testcase name="testDetectaDespesaForaDaVigencia" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="108" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="2" time="0.516632"/>
+        <testcase name="testDetectaFundacaoInexistenteNoProjeto" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="165" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="3" time="0.133343"/>
+        <testcase name="testDetectaBolsistaCadastradoMaisDeUmaVezNoMesmoProjeto" file="/var/www/sistema-pdi/tests/unit/AuditoriaConsistenciaTest.php" line="203" class="Tests\Unit\AuditoriaConsistenciaTest" classname="Tests.Unit.AuditoriaConsistenciaTest" assertions="4" time="0.613693"/>
       </testsuite>
-      <testsuite name="Tests\Unit\DataHelperTest" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" tests="4" assertions="13" errors="0" failures="0" skipped="0" time="0.006440">
-        <testcase name="testFormatarDataValida" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="15" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="2" time="0.002008"/>
-        <testcase name="testFormatarDataVaziaOuInvalida" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="21" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="5" time="0.002267"/>
-        <testcase name="testFormatarDataHora" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="30" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="3" time="0.001545"/>
-        <testcase name="testConverterDataIso" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="37" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="3" time="0.000621"/>
+      <testsuite name="Tests\Unit\DashboardTest" file="/var/www/sistema-pdi/tests/unit/DashboardTest.php" tests="1" assertions="4" errors="0" failures="0" skipped="0" time="0.003731">
+        <testcase name="testDashboardCalculoMetricas" file="/var/www/sistema-pdi/tests/unit/DashboardTest.php" line="13" class="Tests\Unit\DashboardTest" classname="Tests.Unit.DashboardTest" assertions="4" time="0.003731"/>
       </testsuite>
-      <testsuite name="Tests\Unit\DespesaHistoricoTest" file="/var/www/sistema-pdi/tests/unit/DespesaHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.994457">
-        <testcase name="testHistoricoDespesasRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/DespesaHistoricoTest.php" line="36" class="Tests\Unit\DespesaHistoricoTest" classname="Tests.Unit.DespesaHistoricoTest" assertions="7" time="0.994457"/>
+      <testsuite name="Tests\Unit\DataHelperTest" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" tests="4" assertions="13" errors="0" failures="0" skipped="0" time="0.006841">
+        <testcase name="testFormatarDataValida" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="15" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="2" time="0.002062"/>
+        <testcase name="testFormatarDataVaziaOuInvalida" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="21" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="5" time="0.002326"/>
+        <testcase name="testFormatarDataHora" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="30" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="3" time="0.001821"/>
+        <testcase name="testConverterDataIso" file="/var/www/sistema-pdi/tests/unit/DataHelperTest.php" line="37" class="Tests\Unit\DataHelperTest" classname="Tests.Unit.DataHelperTest" assertions="3" time="0.000631"/>
       </testsuite>
-      <testsuite name="Tests\Unit\FundacaoHistoricoTest" file="/var/www/sistema-pdi/tests/unit/FundacaoHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.481843">
-        <testcase name="testHistoricoFundacoesRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/FundacaoHistoricoTest.php" line="24" class="Tests\Unit\FundacaoHistoricoTest" classname="Tests.Unit.FundacaoHistoricoTest" assertions="7" time="0.481843"/>
+      <testsuite name="Tests\Unit\DespesaHistoricoTest" file="/var/www/sistema-pdi/tests/unit/DespesaHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="1.056564">
+        <testcase name="testHistoricoDespesasRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/DespesaHistoricoTest.php" line="36" class="Tests\Unit\DespesaHistoricoTest" classname="Tests.Unit.DespesaHistoricoTest" assertions="7" time="1.056564"/>
       </testsuite>
-      <testsuite name="HealthTest" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="0.007326">
-        <testcase name="testIsDefinedAppPath" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" line="12" class="HealthTest" classname="HealthTest" assertions="1" time="0.000780"/>
-        <testcase name="testBaseUrlHasBeenSet" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" line="17" class="HealthTest" classname="HealthTest" assertions="2" time="0.006546"/>
+      <testsuite name="Tests\Unit\FundacaoHistoricoTest" file="/var/www/sistema-pdi/tests/unit/FundacaoHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.224645">
+        <testcase name="testHistoricoFundacoesRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/FundacaoHistoricoTest.php" line="24" class="Tests\Unit\FundacaoHistoricoTest" classname="Tests.Unit.FundacaoHistoricoTest" assertions="7" time="0.224645"/>
       </testsuite>
-      <testsuite name="Tests\Unit\MigrationsTest" file="/var/www/sistema-pdi/tests/unit/MigrationsTest.php" tests="2" assertions="49" errors="0" failures="0" skipped="0" time="0.005518">
-        <testcase name="testTodasAsTabelasEHistoricosExistem" file="/var/www/sistema-pdi/tests/unit/MigrationsTest.php" line="9" class="Tests\Unit\MigrationsTest" classname="Tests.Unit.MigrationsTest" assertions="24" time="0.000971"/>
-        <testcase name="testTriggersDeAuditoriaExistem" file="/var/www/sistema-pdi/tests/unit/MigrationsTest.php" line="33" class="Tests\Unit\MigrationsTest" classname="Tests.Unit.MigrationsTest" assertions="25" time="0.004547"/>
+      <testsuite name="HealthTest" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="0.010967">
+        <testcase name="testIsDefinedAppPath" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" line="12" class="HealthTest" classname="HealthTest" assertions="1" time="0.002273"/>
+        <testcase name="testBaseUrlHasBeenSet" file="/var/www/sistema-pdi/tests/unit/HealthTest.php" line="17" class="HealthTest" classname="HealthTest" assertions="2" time="0.008694"/>
       </testsuite>
-      <testsuite name="Tests\Unit\ProfessorHistoricoTest" file="/var/www/sistema-pdi/tests/unit/ProfessorHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.225112">
-        <testcase name="testHistoricoProfessoresRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/ProfessorHistoricoTest.php" line="24" class="Tests\Unit\ProfessorHistoricoTest" classname="Tests.Unit.ProfessorHistoricoTest" assertions="7" time="0.225112"/>
+      <testsuite name="Tests\Unit\MigrationsTest" file="/var/www/sistema-pdi/tests/unit/MigrationsTest.php" tests="2" assertions="49" errors="0" failures="0" skipped="0" time="0.006368">
+        <testcase name="testTodasAsTabelasEHistoricosExistem" file="/var/www/sistema-pdi/tests/unit/MigrationsTest.php" line="9" class="Tests\Unit\MigrationsTest" classname="Tests.Unit.MigrationsTest" assertions="24" time="0.001976"/>
+        <testcase name="testTriggersDeAuditoriaExistem" file="/var/www/sistema-pdi/tests/unit/MigrationsTest.php" line="33" class="Tests\Unit\MigrationsTest" classname="Tests.Unit.MigrationsTest" assertions="25" time="0.004392"/>
       </testsuite>
-      <testsuite name="Tests\Unit\ProjetoBolsistaHistoricoTest" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="1.004344">
-        <testcase name="testHistoricoProjetosBolsistasRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaHistoricoTest.php" line="36" class="Tests\Unit\ProjetoBolsistaHistoricoTest" classname="Tests.Unit.ProjetoBolsistaHistoricoTest" assertions="7" time="1.004344"/>
+      <testsuite name="Tests\Unit\ProfessorHistoricoTest" file="/var/www/sistema-pdi/tests/unit/ProfessorHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.263862">
+        <testcase name="testHistoricoProfessoresRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/ProfessorHistoricoTest.php" line="24" class="Tests\Unit\ProfessorHistoricoTest" classname="Tests.Unit.ProfessorHistoricoTest" assertions="7" time="0.263862"/>
       </testsuite>
-      <testsuite name="Tests\Unit\ProjetoBolsistaTest" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaTest.php" tests="1" assertions="6" errors="0" failures="0" skipped="0" time="0.516271">
-        <testcase name="testVinculoEAlteracaoDeBolsistaNoProjeto" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaTest.php" line="57" class="Tests\Unit\ProjetoBolsistaTest" classname="Tests.Unit.ProjetoBolsistaTest" assertions="6" time="0.516271"/>
+      <testsuite name="Tests\Unit\ProjetoBolsistaHistoricoTest" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.997280">
+        <testcase name="testHistoricoProjetosBolsistasRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaHistoricoTest.php" line="36" class="Tests\Unit\ProjetoBolsistaHistoricoTest" classname="Tests.Unit.ProjetoBolsistaHistoricoTest" assertions="7" time="0.997280"/>
       </testsuite>
-      <testsuite name="Tests\Unit\ProjetoHistoricoTest" file="/var/www/sistema-pdi/tests/unit/ProjetoHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.610324">
-        <testcase name="testHistoricoProjetosRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/ProjetoHistoricoTest.php" line="30" class="Tests\Unit\ProjetoHistoricoTest" classname="Tests.Unit.ProjetoHistoricoTest" assertions="7" time="0.610324"/>
+      <testsuite name="Tests\Unit\ProjetoBolsistaTest" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaTest.php" tests="1" assertions="6" errors="0" failures="0" skipped="0" time="0.457849">
+        <testcase name="testVinculoEAlteracaoDeBolsistaNoProjeto" file="/var/www/sistema-pdi/tests/unit/ProjetoBolsistaTest.php" line="57" class="Tests\Unit\ProjetoBolsistaTest" classname="Tests.Unit.ProjetoBolsistaTest" assertions="6" time="0.457849"/>
       </testsuite>
-      <testsuite name="Tests\Unit\RubricaHistoricoTest" file="/var/www/sistema-pdi/tests/unit/RubricaHistoricoTest.php" tests="1" assertions="8" errors="0" failures="0" skipped="0" time="0.807706">
-        <testcase name="testHistoricoRubricasRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/RubricaHistoricoTest.php" line="33" class="Tests\Unit\RubricaHistoricoTest" classname="Tests.Unit.RubricaHistoricoTest" assertions="8" time="0.807706"/>
+      <testsuite name="Tests\Unit\ProjetoHistoricoTest" file="/var/www/sistema-pdi/tests/unit/ProjetoHistoricoTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.817459">
+        <testcase name="testHistoricoProjetosRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/ProjetoHistoricoTest.php" line="30" class="Tests\Unit\ProjetoHistoricoTest" classname="Tests.Unit.ProjetoHistoricoTest" assertions="7" time="0.817459"/>
       </testsuite>
-      <testsuite name="Tests\Unit\SefazXmlParserTest" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" tests="4" assertions="16" errors="0" failures="0" skipped="0" time="0.012269">
-        <testcase name="testParseNfePadraoComNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="19" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="8" time="0.005735"/>
-        <testcase name="testParseNfeSemWrapperNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="87" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="6" time="0.002873"/>
-        <testcase name="testParseXmlInvalidoLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="128" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.002178"/>
-        <testcase name="testParseXmlVazioLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="134" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.001483"/>
+      <testsuite name="Tests\Unit\RubricaHistoricoTest" file="/var/www/sistema-pdi/tests/unit/RubricaHistoricoTest.php" tests="1" assertions="8" errors="0" failures="0" skipped="0" time="0.890908">
+        <testcase name="testHistoricoRubricasRegistraAlteracoesCorretamente" file="/var/www/sistema-pdi/tests/unit/RubricaHistoricoTest.php" line="33" class="Tests\Unit\RubricaHistoricoTest" classname="Tests.Unit.RubricaHistoricoTest" assertions="8" time="0.890908"/>
       </testsuite>
-      <testsuite name="Tests\Unit\UsuarioCrudTest" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" tests="6" assertions="16" errors="0" failures="0" skipped="0" time="1.643123">
-        <testcase name="testInserirUsuarioAuditoria" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="24" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="4" time="0.761252"/>
-        <testcase name="testAtualizarUsuarioAuditoriaHistorico" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="59" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="6" time="0.455332"/>
-        <testcase name="testExcluirUsuarioAlimentaHistorico" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="106" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="3" time="0.416849"/>
-        <testcase name="testAdminFilterBloqueiaNaoLogado" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="145" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="1" time="0.005758"/>
-        <testcase name="testAdminFilterBloqueiaNaoAdmin" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="155" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="1" time="0.001217"/>
-        <testcase name="testAdminFilterPermiteAdmin" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="170" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="1" time="0.002716"/>
+      <testsuite name="Tests\Unit\SefazXmlParserTest" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" tests="4" assertions="16" errors="0" failures="0" skipped="0" time="0.008659">
+        <testcase name="testParseNfePadraoComNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="19" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="8" time="0.003754"/>
+        <testcase name="testParseNfeSemWrapperNfeProc" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="87" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="6" time="0.000923"/>
+        <testcase name="testParseXmlInvalidoLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="128" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.003262"/>
+        <testcase name="testParseXmlVazioLancaExcecao" file="/var/www/sistema-pdi/tests/unit/SefazXmlParserTest.php" line="134" class="Tests\Unit\SefazXmlParserTest" classname="Tests.Unit.SefazXmlParserTest" assertions="1" time="0.000720"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\UsuarioCrudTest" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" tests="6" assertions="16" errors="0" failures="0" skipped="0" time="1.531146">
+        <testcase name="testInserirUsuarioAuditoria" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="24" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="4" time="0.687565"/>
+        <testcase name="testAtualizarUsuarioAuditoriaHistorico" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="59" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="6" time="0.460758"/>
+        <testcase name="testExcluirUsuarioAlimentaHistorico" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="106" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="3" time="0.372927"/>
+        <testcase name="testAdminFilterBloqueiaNaoLogado" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="145" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="1" time="0.005579"/>
+        <testcase name="testAdminFilterBloqueiaNaoAdmin" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="155" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="1" time="0.001193"/>
+        <testcase name="testAdminFilterPermiteAdmin" file="/var/www/sistema-pdi/tests/unit/UsuarioCrudTest.php" line="170" class="Tests\Unit\UsuarioCrudTest" classname="Tests.Unit.UsuarioCrudTest" assertions="1" time="0.003124"/>
       </testsuite>
     </testsuite>
   </testsuite>
