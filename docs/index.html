@@ -187,8 +187,8 @@
     <div class="container">
         <div class="intro-card">
             <h2>📖 O que é o Sistema PDI?</h2>
-            <p>Imagine um assistente financeiro e administrativo criado especialmente para professores, pesquisadores, universidades e fundações de apoio (como FCPC, FASTEF, etc.)[cite: 1].</p>
-            <p>O <strong>Sistema PDI</strong> acaba com a confusão das planilhas de Excel e a papelada física, centralizando todo o dinheiro de um projeto de pesquisa, o pagamento de bolsistas e as compras de equipamentos em um só lugar[cite: 1]. A ideia é simples: <strong>devolver o tempo do pesquisador para a ciência</strong>, tirando de suas costas a burocracia complexa da prestação de contas governamental para órgãos como o TCU e CGU[cite: 1].</p>
+            <p>Imagine um assistente financeiro e administrativo criado especialmente para professores, pesquisadores, universidades e fundações de apoio (como FCPC, FASTEF, etc.).</p>
+            <p>O <strong>Sistema PDI</strong> acaba com a confusão das planilhas de Excel e a papelada física, centralizando todo o dinheiro de um projeto de pesquisa, o pagamento de bolsistas e as compras de equipamentos em um só lugar. A ideia é simples: <strong>devolver o tempo do pesquisador para a ciência</strong>, tirando de suas costas a burocracia complexa da prestação de contas governamental para órgãos como o TCU e CGU.</p>
         </div>
 
         <section>
@@ -196,26 +196,32 @@
             <div class="grid-2">
                 <div class="card">
                     <h3>📄 Leitura Inteligente (XML)</h3>
-                    <p>Importação de despesas através do envio do XML da Nota Fiscal eletrônica com extração de dados (CNPJ, data, valor) para acelerar a prestação de contas[cite: 1].</p>
+                    <p>Importação de despesas através do envio do XML da Nota Fiscal eletrônica com extração de dados (CNPJ, data, valor) para acelerar a prestação de contas.</p>
                 </div>
                 <div class="card">
                     <h3>💰 Controle Orçamentário</h3>
-                    <p>Gestão clara do dinheiro dividido em categorias (Custeio, Capital, Bolsas)[cite: 1]. O saldo se atualiza sozinho assim que uma despesa é inserida, alterada ou estornada[cite: 1].</p>
+                    <p>Gestão clara do dinheiro dividido em categorias (Custeio, Capital, Bolsas). O saldo se atualiza sozinho assim que uma despesa é inserida, alterada ou estornada.</p>
                 </div>
                 <div class="card">
                     <h3>👥 Gestão de Equipes</h3>
-                    <p>Cadastro e alocação de coordenadores e bolsistas nos projetos, controlando prazos de vigência, valores das bolsas e compatibilidade[cite: 1].</p>
+                    <p>Cadastro e alocação de coordenadores e bolsistas nos projetos, controlando prazos de vigência, valores das bolsas e compatibilidade.</p>
                 </div>
                 <div class="card">
                     <h3>🛡️ Auditoria Implacável</h3>
-                    <p>A arquitetura usa "Shadow Tables" (Lixeira Histórica). Toda exclusão ou alteração de dados gera um registro imutável com autoria e data, garantindo compliance público[cite: 1].</p>
+                    <p>A arquitetura usa "Shadow Tables" (Lixeira Histórica). Toda exclusão ou alteração de dados gera um registro imutável com autoria e data, garantindo compliance público.</p>
                 </div>
+                
+                <div class="card">
+                    <h3>🅮 Licença</h3>
+                    <p>Licença MIT: Pode usar o software para fins pessoais, comerciais ou privados sem pagar nada. O código fonte disponível <a href="https://github.com/vlademiro575/sistema-pdi">aqui</a>. </p>
+                </div>
+                
             </div>
         </section>
 
         <section>
             <h2>💻 Arquitetura e Stack Tecnológico</h2>
-            <p>O sistema foi construído com as melhores práticas de engenharia de software, utilizando o padrão MVC (Model-View-Controller) e garantindo portabilidade[cite: 1].</p>
+            <p>O sistema foi construído com as melhores práticas de engenharia de software, utilizando o padrão MVC (Model-View-Controller) e garantindo portabilidade.</p>
             <div class="stack-container">
                 <span class="badge">PHP 8+</span>
                 <span class="badge">CodeIgniter 4</span>
@@ -228,7 +234,7 @@
 
         <section>
             <h2>🚀 Passo a Passo de Instalação</h2>
-            <p>Instruções para configurar e rodar o projeto em um ambiente local ou servidor (focado em Debian/Ubuntu Linux)[cite: 1].</p>
+            <p>Instruções para configurar e rodar o projeto em um ambiente local ou servidor (focado em Debian/Ubuntu Linux).</p>
 
             <div class="step-title">1. Instalação de Pré-requisitos</div>
             <div class="terminal">
@@ -265,7 +271,7 @@ cd sistema-pdi</pre>
 chmod -R 775 writable
 php spark serve --host 0.0.0.0 --port 8080</pre>
             </div>
-            <p>Pronto! Basta acessar <strong>http://localhost:8080</strong> no seu navegador para começar a utilizar o Sistema PDI[cite: 1].</p>
+            <p>Pronto! Basta acessar <strong>http://localhost:8080</strong> no seu navegador para começar a utilizar o Sistema PDI.</p>
         </section>
     </div>
 
